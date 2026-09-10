@@ -1,0 +1,573 @@
+/* =========================================================
+   TOKENS
+========================================================= */
+:root{
+  --bg: #0a0707;
+  --bg-soft: #120b0a;
+  --red: #F4320B;
+  --red-dim: #7a1512;
+  --orange: #F4320B;
+  --text: #f4efe9;
+  --text-muted: #ab9c94;
+  --text-faint: #6f625c;
+  --border: rgba(244,239,233,0.1);
+  --card-bg: rgba(244,239,233,0.04);
+
+  --font-display: 'Anton', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --container: 1180px;
+}
+
+*{ box-sizing: border-box; margin:0; padding:0; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+a{ color: inherit; text-decoration: none; }
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.cursor-light,
+.cursor-trail {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Luz principal */
+.cursor-light {
+    width: 160px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        ellipse,
+        #f4320bd0 0%,
+        #f4320b70 25%,
+        transparent 70%
+    );
+
+    filter: blur(8px);
+
+    transform: translate(-50%, -50%);
+}
+
+/* Estela tipo humo */
+.cursor-trail {
+    width: 260px;
+    height: 100px;
+
+    border-radius: 50% 40% 60% 45%;
+
+    background: radial-gradient(
+        ellipse,
+        #f4320b70 0%,
+        #f4320b35 35%,
+        transparent 75%
+    );
+
+    filter: blur(25px);
+
+    transform: translate(-50%, -50%) rotate(-10deg);
+
+    animation: smoke 4s ease-in-out infinite alternate;
+}
+
+@keyframes smoke {
+    0% {
+        border-radius: 50% 40% 60% 45%;
+        transform: translate(-50%, -50%) rotate(-10deg) scale(1);
+    }
+
+    50% {
+        border-radius: 40% 60% 45% 55%;
+        transform: translate(-50%, -50%) rotate(8deg) scale(1.08);
+    }
+
+    100% {
+        border-radius: 60% 45% 55% 40%;
+        transform: translate(-50%, -50%) rotate(-5deg) scale(0.95);
+    }
+}
+.hero h1,
+.hero p {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn{
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.7rem 1.5rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+.btn:active{ transform: translateY(0); }
+
+.btn-ghost{
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.753);
+  color: var(--text);
+}
+.btn-ghost:hover{ border-color: rgba(244,239,233,0.35); background: rgba(244, 239, 233, 0.11); }
+
+.btn-primary{
+  background: var(--orange);
+  color: #fff;
+}
+.btn-primary:hover{ background: #f4320bda; }
+
+.btn-outline{
+  background: transparent;
+  border: 1.5px solid var(--text);
+  color: var(--text);
+}
+
+
+.btn-rounded{ border-radius: 50px; }
+.btn-rounded:hover{  background-color: rgba(244, 239, 233, 0.11); border-color: rgba(244,239,233,0.35); }
+
+/* =========================================================
+   HEADER
+========================================================= */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: linear-gradient(
+  to bottom,
+  rgba(10, 7, 7, 0.85) 0%,
+  rgba(10, 7, 7, 0) 100%
+);
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  padding: 0 32px;
+}
+
+.miniLogo{
+  width: 70px;
+}
+
+.main-nav{
+  display: flex;
+  gap: 2.2rem;
+  align-items: center;
+}
+.main-nav a{
+  font-size: 16px;
+  color: whitesmoke;
+  transition: color 0.15s ease;
+}
+.main-nav a:hover{ color: var(--text); }
+.caret{ font-size: 0.7em; margin-left: 2px; }
+
+.auth-buttons{ display: flex; gap: 0.75rem; }
+
+/* =========================================================
+   HERO
+========================================================= */
+.hero{
+  position: relative;
+  padding: 6rem 0 5rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-glow{
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: 900px;
+  height: 500px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle 250px at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.20),
+    rgba(255, 255, 255, 0.08) 30%,
+    transparent 70%
+);
+ 
+  pointer-events: none;
+}
+
+.hero-inner{ position: relative; z-index: 1; }
+
+
+.heroLogo{
+  width: 40%;
+  margin-bottom: 1.5rem;
+}
+.signup-form{
+  display: flex;
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--text);
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 0 60px rgba(224,38,31,0.25);
+}
+.signup-form input{
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.85rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  outline: none;
+}
+.signup-form input::placeholder{ color: #8a8a8a; }
+.signup-form .btn-primary{ border-radius: 5px; white-space: nowrap; }
+
+/* =========================================================
+   QUIZ SECTION
+========================================================= */
+.quiz-section{ padding: 6rem 102px; }
+
+.quiz-inner{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  
+}
+
+.quiz-copy h2{
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.quiz-copy p{
+  color: var(--text-muted);
+  max-width: 40ch;
+  margin-bottom: 1.8rem;
+}
+
+.card-stack{
+  position: relative;
+  height: 320px;
+  background: radial-gradient(ellipse at center, rgba(224,38,31,0.35), rgba(224,38,31,0) 75%);
+
+}
+.char-card{
+  position: absolute;
+  width: 230px;
+  height: 330px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #241615, #100a0a);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+.card-1{ left: 0; top: 40px; transform: rotate(-12deg); background:
+  linear-gradient(1000deg, rgba(28, 42, 48, 0), rgba(13, 20, 22, 0.534)),
+  url("https://static.wikia.nocookie.net/freshy-kanal/images/1/1d/Henry_Creel_Based_On.png/revision/latest?cb=20221126231705") center / cover no-repeat; }
+.card-2{ left: 150px; top: 0; transform: rotate(0deg); z-index: 2; background:
+  linear-gradient(1000deg, rgba(28, 42, 48, 0), rgba(13, 20, 22, 0.534)),
+  url("https://static.wikia.nocookie.net/strangerthings8338/images/e/e2/Eleven_-_Sorcerer.png/revision/latest/scale-to-width-down/1200?cb=20260313155200") center / cover no-repeat;}
+.card-3{ left: 300px; top: 30px; transform: rotate(12deg); background:
+  linear-gradient(1000deg, rgba(28, 42, 48, 0), rgba(13, 20, 22, 0.534)),
+  url("https://upload.wikimedia.org/wikipedia/en/8/8b/ST3_Steve_Harrington_portrait.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original") center / cover no-repeat; }
+
+/* =========================================================
+   GALLERY
+========================================================= */
+.gallery-section{ padding: 6rem 0 5rem; }
+
+.section-title{
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+}
+.section-title strong{ color: var(--text); font-weight: 400; }
+.section-title.center{ text-align: center; }
+
+.gallery-scroll{
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(240px, 1fr);
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding: 0 32px 0.5rem;
+  scroll-snap-type: x proximity;
+}
+.gallery-item{
+  scroll-snap-align: start;
+  aspect-ratio: 3/4;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  background-size: cover;
+  background-position: center;
+}
+.gallery-item figcaption{
+  font-size: 0.85rem;
+  color: var(--text);
+  background: rgba(0,0,0,0.5);
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+}
+.gallery-1{ background: linear-gradient(160deg, #16211f, #0a0f0e), radial-gradient(circle at 70% 30%, #2b6b5e33, transparent); }
+.gallery-2{ background: linear-gradient(160deg, #101a2e, #0a0c14), radial-gradient(circle at 30% 70%, #1d3a7033, transparent); }
+.gallery-3{ background: linear-gradient(160deg, #241814, #100b0a), radial-gradient(circle at 60% 40%, #7a2b1e33, transparent); }
+.gallery-4{ background: linear-gradient(160deg, #241417, #0f0a0b), radial-gradient(circle at 40% 60%, #7a1e3833, transparent); }
+
+/* =========================================================
+   VIDEO / TV
+========================================================= */
+.video-section{ padding: 3rem 0 7rem; }
+
+.tv-frame{
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  background: linear-gradient(160deg, #6b5a4a, #3a2f26);
+  border-radius: 18px;
+  padding: 22px;
+  gap: 18px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+}
+
+.tv-screen{
+  border-radius: 8px;
+  aspect-ratio: 16/10;
+  background: linear-gradient(160deg, #1a1030, #2b1420 45%, #10131c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid #14100d;
+}
+
+.play-btn{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.play-btn:hover{ transform: scale(1.06); background: rgba(0,0,0,0.55); }
+
+.tv-panel{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.tv-speaker{
+  width: 60px;
+  height: 90px;
+  border-radius: 6px;
+  background: repeating-linear-gradient(180deg, #1c1712, #1c1712 4px, #2c241c 4px, #2c241c 8px);
+}
+.tv-dial{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #efe6d8, #b7ab98);
+  border: 3px solid #14100d;
+}
+.tv-dial.small{ width: 34px; height: 34px; }
+
+/* =========================================================
+   COMMUNITY
+========================================================= */
+.community-section{
+  position: relative;
+  padding: 6rem 0 9rem;
+  overflow: hidden;
+}
+.community-glow{
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  width: 1100px;
+  height: 600px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(30,70,140,0.28), transparent 60%),
+    radial-gradient(ellipse at 70% 40%, rgba(224,38,31,0.22), transparent 60%);
+  pointer-events: none;
+}
+
+.community-inner{ position: relative; z-index: 1; text-align: center; }
+
+.community-copy{
+  color: var(--text-muted);
+  max-width: 56ch;
+  margin: 0 auto 2rem;
+}
+
+.testimonials{
+  position: relative;
+  max-width: 980px;
+  margin: 4rem auto 0;
+  height: 260px;
+}
+
+.testimonial{
+  position: absolute;
+  max-width: 300px;
+  text-align: left;
+  background: rgba(20,14,13,0.85);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  backdrop-filter: blur(6px);
+}
+.testimonial p{ font-size: 0.9rem; color: var(--text); margin-bottom: 0.6rem; }
+.testimonial cite{ font-style: normal; font-size: 0.8rem; color: var(--text-faint); }
+.testimonial .name{ color: var(--orange); font-weight: 600; }
+
+.t1{ left: 0; top: 0; }
+.t2{ right: 0; top: 40px; }
+.t3{ left: 12%; top: 150px; }
+.t4{ right: 8%; top: 190px; }
+
+/* =========================================================
+   FOOTER
+========================================================= */
+.site-footer{
+  border-top: 1px solid var(--border);
+  padding-top: 4rem;
+}
+
+.footer-inner{
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+
+.footer-logo{
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.footer-desc{
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 38ch;
+  margin-bottom: 1.5rem;
+}
+
+.socials{ display: flex; gap: 0.75rem; }
+.social-icon{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.social-icon:hover{ border-color: var(--text); color: var(--orange); }
+
+.footer-links h3, .footer-contact h3{
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+.footer-links a, .footer-contact a{
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+  transition: color 0.15s ease;
+}
+.footer-links a:hover, .footer-contact a:hover{ color: var(--text); }
+.footer-links a:first-of-type{ text-decoration: underline; color: var(--text); }
+
+.footer-bottom{
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+}
+.footer-bottom-inner{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+}
+.footer-bottom .accent{ color: var(--orange); }
+.legal-links a{ color: var(--text-faint); }
+.legal-links a:hover{ color: var(--text); }
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 900px){
+  .main-nav{ display: none; }
+  .quiz-inner{ grid-template-columns: 1fr; text-align: center; }
+  .quiz-copy p{ margin-left: auto; margin-right: auto; }
+  .card-stack{ margin: 0 auto; width: 320px; }
+  .footer-inner{ grid-template-columns: 1fr; gap: 2rem; }
+  .testimonials{ height: auto; display: flex; flex-direction: column; gap: 1rem; }
+  .testimonial{ position: static; max-width: 100%; }
+}
+
+@media (max-width: 560px){
+  .tv-frame{ grid-template-columns: 1fr; }
+  .tv-panel{ flex-direction: row; }
+  .signup-form{ flex-direction: column; background: transparent; padding: 0; gap: 0.6rem; }
+  .signup-form input{ background: var(--text); border-radius: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; scroll-behavior: auto !important; }
+}

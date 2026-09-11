@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stranger Things</title>
+<link rel="icon" type="image" href="img/minilogoST.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="cont header-inner">
+     <nav class="main-nav">
+      <a href="index.html"><img src="img/minilogoST.png" alt="" class="miniLogo"> </a>
+      <a href="personajes.html">Personajes</a>
+      <a href="#temporadas" class="has-caret">Temporadas <span class="caret">▾</span></a>
+      <a href="#galeria">Galería</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+
+    <div class="auth-buttons">
+      <button class="btn btn-ghost">Sign in</button>
+      <button class="btn btn-ghost">Sign up</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="cursor-light"></div>
+<div class="cursor-trail"></div>
+
+  <!-- ===================== QUIZ ===================== -->
+  <section class="quiz-section" id="quiz">
+    <div class="cont quiz-inner" style="margin-top: 5%;">
+      <div class="quiz-copy">
+        <h2>Descubre cuál es tu<br>personaje</h2>
+        <p>Responde el quiz y descubre qué personaje de Stranger Things refleja mejor tu personalidad.</p>
+        <button class="btn  btn-rounded btn-outline">Comenzar Quiz</button>
+      </div>
+
+      <div class="card-stack" aria-hidden="true">
+        <div class="char-card card-1"></div>
+        <div class="char-card card-2"></div>
+        <div class="char-card card-3"></div>
+      </div>
+    </div>
+  </section>
+
+  
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="cont footer-inner">
+    <div class="footer-brand">
+  <img src="img/logoST.png"  alt="">
+  <p class="footer-desc">Un espacio para sumergirte en el universo de Stranger Things, recorrer sus historias, conocer a sus personajes y revivir los momentos más memorables.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram" class="social-icon">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2 .24 2.4.4.6.24 1 .55 1.5 1s.75.9 1 1.5c.16.4.34 1.2.4 2.4.06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.24 2-.4 2.4-.24.6-.55 1-1 1.5s-.9.75-1.5 1c-.4.16-1.2.34-2.4.4-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2-.24-2.4-.4-.6-.24-1-.55-1.5-1s-.75-.9-1-1.5c-.16-.4-.34-1.2-.4-2.4C2.21 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.24-2 .4-2.4.24-.6.55-1 1-1.5s.9-.75 1.5-1c.4-.16 1.2-.34 2.4-.4C8.4 2.21 8.8 2.2 12 2.2zm0 1.8c-3.15 0-3.5 0-4.75.07-1 .05-1.6.2-1.9.35-.5.19-.85.42-1.2.78s-.6.7-.78 1.2c-.15.3-.3.9-.35 1.9C3 9.5 3 9.85 3 13s0 3.5.07 4.75c.05 1 .2 1.6.35 1.9.19.5.42.85.78 1.2s.7.6 1.2.78c.3.15.9.3 1.9.35 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c1-.05 1.6-.2 1.9-.35.5-.19.85-.42 1.2-.78s.6-.7.78-1.2c.15-.3.3-.9.35-1.9.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.05-1-.2-1.6-.35-1.9a3.1 3.1 0 0 0-.78-1.2 3.1 3.1 0 0 0-1.2-.78c-.3-.15-.9-.3-1.9-.35C15.5 4 15.15 4 12 4zm0 3.6a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 1.9a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.6-2.1a1.26 1.26 0 1 1-2.52 0 1.26 1.26 0 0 1 2.52 0z"/></svg>
+        </a>
+        <a href="#" aria-label="X" class="social-icon">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.9 2H22l-7.5 8.6L23.3 22h-7l-5.5-7.2L4.5 22H1.4l8-9.2L1 2h7.2l5 6.6L18.9 2zm-1.2 18h1.7L7.4 3.9H5.6L17.7 20z"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok" class="social-icon">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 2h3.1c.2 1.6 1.4 3 3.1 3.4V8.6c-1.2 0-2.4-.4-3.4-1v6.9c0 3.4-2.7 6-6 6-1.5 0-2.9-.6-3.9-1.5A6 6 0 0 1 5.5 8.7c1-.7 2.2-1 3.4-.9v3.2c-.5-.1-1-.1-1.4.1a2.8 2.8 0 0 0-1.6 3.2c.3 1.2 1.4 2 2.6 2 1.5 0 2.8-1.2 2.8-2.8V2z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <h3>Páginas</h3>
+      <a href="#">Inicio</a>
+      <a href="#personajes">Personajes</a>
+      <a href="#temporadas">Temporadas</a>
+      <a href="#galeria">Galería</a>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contacto</h3>
+      <a href="mailto:strangersite@gmail.com">strangersite@gmail.com</a>
+      <a href="#">@stranger_site</a>
+      <a href="tel:+5491165769865">+54 9 11 6576-9865</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="cont footer-bottom-inner">
+      <p>Copyright © 2026 <span class="accent">Stranger Things</span> - Todos los derechos reservados</p>
+      <p class="legal-links"><a href="#">Términos &amp; Condiciones</a> | <a href="#">Política de privacidad</a></p>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

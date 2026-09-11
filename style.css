@@ -15,11 +15,12 @@
 
   --font-display: 'Anton', 'Arial Narrow', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --bs-body-font-family: 'Inter', sans-serif;
 
   --container: 1180px;
 }
 
-*{ box-sizing: border-box; margin:0; padding:0; }
+*{ box-sizing: border-box; margin:0; padding:0 ;  }
 
 html{ scroll-behavior: smooth; }
 
@@ -172,7 +173,8 @@ opacity: 0;
 }
 
 .miniLogo{
-  width: 70px;
+  width: 50px;
+  vertical-align: middle;
 }
 
 .main-nav{
@@ -260,11 +262,12 @@ opacity: 0;
 }
 
 .quiz-copy h2{
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  letter-spacing: 0.5px;
-  line-height: 1.15;
+  font-family: 'Inter' !important;
+  font-size: clamp(1.8rem, 3vw, 2.4rem) !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.15 !important;
   margin-bottom: 1.2rem;
+  font-weight: 600;
 }
 
 .quiz-copy p{

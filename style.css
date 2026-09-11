@@ -440,7 +440,7 @@ opacity: 0;
  
 .testimonials{
   position: relative;
-  margin: 4rem auto 0;
+  margin: 1rem auto 0;
   height: 340px;
 }
  
@@ -477,6 +477,9 @@ opacity: 0;
 .site-footer{
   border-top: 1px solid var(--border);
   padding-top: 4rem;
+  padding-right: 4rem;
+  padding-left: 4rem;
+
 }
 
 .footer-inner{
@@ -484,50 +487,50 @@ opacity: 0;
   grid-template-columns: 1.6fr 1fr 1fr;
   gap: 3rem;
   padding-bottom: 3rem;
+
+  img{
+    width: 200px;
+    margin-bottom: 2%;
+  }
+
 }
 
-.footer-logo{
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
+
+
+
 
 .footer-desc{
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
   max-width: 38ch;
   margin-bottom: 1.5rem;
 }
 
 .socials{ display: flex; gap: 0.75rem; }
 .social-icon{
-  width: 36px;
-  height: 36px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  border: 1px solid var(--border);
+  border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.15s ease, color 0.15s ease;
 }
-.social-icon:hover{ border-color: var(--text); color: var(--orange); }
+.social-icon:hover{ border-color: var(--text); background-color: rgba(255, 255, 255, 0.185); }
 
 .footer-links h3, .footer-contact h3{
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   margin-bottom: 1rem;
   color: var(--text);
 }
 .footer-links a, .footer-contact a{
   display: block;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 1rem;
   margin-bottom: 0.7rem;
   transition: color 0.15s ease;
 }
 .footer-links a:hover, .footer-contact a:hover{ color: var(--text); }
-.footer-links a:first-of-type{ text-decoration: underline; color: var(--text); }
 
 .footer-bottom{
   border-top: 1px solid var(--border);
@@ -539,10 +542,8 @@ opacity: 0;
   flex-wrap: wrap;
   gap: 0.75rem;
   font-size: 0.82rem;
-  color: var(--text-faint);
 }
 .footer-bottom .accent{ color: var(--orange); }
-.legal-links a{ color: var(--text-faint); }
 .legal-links a:hover{ color: var(--text); }
 
 /* =========================================================

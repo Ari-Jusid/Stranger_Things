@@ -30,11 +30,11 @@
 </header>
 
 <main>
-
+<div class="cursor-light"></div>
+<div class="cursor-trail"></div>
   <!-- ===================== HERO ===================== -->
   <section class="hero">
-    <div class="cursor-light"></div>
-<div class="cursor-trail"></div>
+    
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="container hero-inner">
       <h1 class="st-wordmark">
@@ -72,30 +72,31 @@
     </div>
 
     <div class="gallery-scroll">
-      <figure class="gallery-item gallery-1"><figcaption>Laboratorio</figcaption></figure>
-      <figure class="gallery-item gallery-2"><figcaption>El Upside Down</figcaption></figure>
-      <figure class="gallery-item gallery-3"><figcaption>El grupo</figcaption></figure>
+      <figure class="gallery-item gallery-1"><figcaption>Sala Arcoíris</figcaption></figure>
+      <figure class="gallery-item gallery-2"><figcaption>Eddy Munson trailer</figcaption></figure>
+      <figure class="gallery-item gallery-3"><figcaption>Temporada 4</figcaption></figure>
       <figure class="gallery-item gallery-4"><figcaption>Casa Byers</figcaption></figure>
     </div>
   </section>
 
   <!-- ===================== VIDEO ===================== -->
-  <section class="video-section">
+<section class="video-section">
     <div class="container">
-      <div class="tv-frame">
-        <div class="tv-screen">
-          <button class="play-btn" aria-label="Reproducir video">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </button>
+      <div class="tv-wrapper">
+        <div class="tv-video-wrap">
+          <iframe
+  src="https://www.youtube.com/embed/xgCxY0qWRC4?rel=0&modestbranding=1&autoplay=1&mute=1"
+            title="Stranger Things - Video oficial de Netflix"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
-        <div class="tv-panel">
-          <div class="tv-speaker"></div>
-          <div class="tv-dial"></div>
-          <div class="tv-dial small"></div>
-        </div>
+        <img src="img/tvST.png" alt="Televisor retro" class="tv-image">
       </div>
     </div>
   </section>
+ 
 
   <!-- ===================== COMUNIDAD ===================== -->
   <section class="community-section">
@@ -103,7 +104,7 @@
     <div class="container community-inner">
       <h2 class="section-title center">Forma parte de nuestra<br><strong>comunidad</strong></h2>
       <p class="community-copy">Un espacio para compartir la pasión por Stranger Things, conectar con otros fans y mantener viva la emoción por cada historia, personaje y momento.</p>
-      <button class="btn btn-outline">Unirse</button>
+      <button class="btn btn-rounded btn-outline">Unirse</button>
 
       <div class="testimonials">
         <blockquote class="testimonial t1">

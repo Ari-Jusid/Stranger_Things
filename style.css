@@ -2,7 +2,7 @@
    TOKENS
 ========================================================= */
 :root{
-  --bg: #0a0707;
+  --bg: #0F0202;
   --bg-soft: #120b0a;
   --red: #F4320B;
   --red-dim: #7a1512;
@@ -146,7 +146,7 @@ opacity: 0;
 }
 
 
-.btn-rounded{ border-radius: 50px; }
+.btn-rounded{ border-radius: 50px; font-size: 1.2rem; }
 .btn-rounded:hover{  background-color: rgba(244, 239, 233, 0.11); border-color: rgba(244,239,233,0.35); }
 
 /* =========================================================
@@ -312,16 +312,15 @@ opacity: 0;
 .gallery-section{ padding: 6rem 0 5rem; }
 
 .section-title{
-  font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1px;
   line-height: 1.3;
   font-weight: 400;
   color: var(--text-muted);
   margin-bottom: 3rem;
+  text-align: center; 
 }
-.section-title strong{ color: var(--text); font-weight: 400; }
-.section-title.center{ text-align: center; }
+.section-title strong{ color: var(--text); font-weight: 600; }
 
 .gallery-scroll{
   display: grid;
@@ -334,9 +333,8 @@ opacity: 0;
 }
 .gallery-item{
   scroll-snap-align: start;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3/2;
   border-radius: 12px;
-  border: 1px solid var(--border);
   display: flex;
   align-items: flex-end;
   padding: 1rem;
@@ -350,129 +348,128 @@ opacity: 0;
   padding: 0.3rem 0.7rem;
   border-radius: 20px;
 }
-.gallery-1{ background: linear-gradient(160deg, #16211f, #0a0f0e), radial-gradient(circle at 70% 30%, #2b6b5e33, transparent); }
-.gallery-2{ background: linear-gradient(160deg, #101a2e, #0a0c14), radial-gradient(circle at 30% 70%, #1d3a7033, transparent); }
-.gallery-3{ background: linear-gradient(160deg, #241814, #100b0a), radial-gradient(circle at 60% 40%, #7a2b1e33, transparent); }
-.gallery-4{ background: linear-gradient(160deg, #241417, #0f0a0b), radial-gradient(circle at 40% 60%, #7a1e3833, transparent); }
+.gallery-1{ background-image: url(https://static.wikia.nocookie.net/strangerthings8338/images/5/56/Rainbow_Room_S4.jpg/revision/latest?cb=20220907000407);  }
+.gallery-2{ background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbKO97ipA62cAO4P3l7w2ps056gCbWSulGMLJNODKU3C4fJit9-ZEJWnoD&s=10);  }
+.gallery-3{ background-image: url(https://indiehoy.com/wp-content/uploads/2020/06/stranger-things.jpg); }
+.gallery-4{ background-image: url(https://i.pinimg.com/736x/d0/7f/e6/d07fe6a1045313a1d13e430832119ccc.jpg);}
 
 /* =========================================================
    VIDEO / TV
 ========================================================= */
 .video-section{ padding: 3rem 0 7rem; }
-
-.tv-frame{
+ 
+.tv-wrapper{
+  position: relative;
   max-width: 900px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 110px;
-  background: linear-gradient(160deg, #6b5a4a, #3a2f26);
-  border-radius: 18px;
-  padding: 22px;
-  gap: 18px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
 }
+ 
+/* la imagen manda el tamaño del bloque; el video se recorta debajo,
+   asomando solo por el hueco transparente de la pantalla */
+.tv-image{
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+ 
+.tv-video-wrap{
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  background: #000;
+  /* coordenadas del hueco de pantalla dentro del PNG (1359x533px) */
+  left: 27.74%;
+  top: 16.7%;
+  width:65.7%;
+  height: 63.42%;
+    transform: translateX(-25%);
 
-.tv-screen{
-  border-radius: 8px;
-  aspect-ratio: 16/10;
-  background: linear-gradient(160deg, #1a1030, #2b1420 45%, #10131c);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 6px solid #14100d;
 }
+ 
+/* el iframe de YouTube es 16:9 y el hueco de la pantalla es ~4:3,
+   así que se agranda y se centra para que cubra todo el hueco sin bandas negras */
+.tv-video-wrap iframe{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  /* el reproductor de YouTube siempre respeta 16:9 puertas adentro:
+     si el iframe no tiene esa proporción, mete barras negras.
+     Por eso acá el iframe se agranda para MANTENER 16:9 real
+     (alto = 100% del hueco, ancho = alto * 16/9) y el .tv-video-wrap
+     de arriba recorta con overflow:hidden lo que sobra a los costados. */
+  width: 151.2%;
+  height: 95%;
+  transform: translateX(-50%);
 
-.play-btn{
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.8);
-  background: rgba(0,0,0,0.35);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  display: block;
+  border: 0;
 }
-.play-btn:hover{ transform: scale(1.06); background: rgba(0,0,0,0.55); }
-
-.tv-panel{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.2rem;
-}
-.tv-speaker{
-  width: 60px;
-  height: 90px;
-  border-radius: 6px;
-  background: repeating-linear-gradient(180deg, #1c1712, #1c1712 4px, #2c241c 4px, #2c241c 8px);
-}
-.tv-dial{
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #efe6d8, #b7ab98);
-  border: 3px solid #14100d;
-}
-.tv-dial.small{ width: 34px; height: 34px; }
-
 /* =========================================================
    COMMUNITY
 ========================================================= */
 .community-section{
   position: relative;
-  padding: 6rem 0 9rem;
+  padding:  9rem 9rem;
+  padding-top:0 ;
   overflow: hidden;
 }
 .community-glow{
   position: absolute;
   bottom: -10%;
   left: 50%;
-  width: 1100px;
+  width: 100%;
   height: 600px;
   transform: translateX(-50%);
   background:
+    linear-gradient(to bottom, var(--bg) 0%, rgba(10,7,7,0.6) 25%, transparent 55%),
     radial-gradient(ellipse at 30% 60%, rgba(30,70,140,0.28), transparent 60%),
     radial-gradient(ellipse at 70% 40%, rgba(224,38,31,0.22), transparent 60%);
-  pointer-events: none;
 }
-
-.community-inner{ position: relative; z-index: 1; text-align: center; }
-
+ 
+.community-inner{   width: 100%;
+ position: relative; z-index: 1; text-align: center; }
+ 
 .community-copy{
   color: var(--text-muted);
   max-width: 56ch;
   margin: 0 auto 2rem;
 }
-
+ 
 .testimonials{
   position: relative;
-  max-width: 980px;
   margin: 4rem auto 0;
-  height: 260px;
+  height: 340px;
 }
-
+ 
 .testimonial{
   position: absolute;
-  max-width: 300px;
+  width: 400px;
+  max-width: 86vw;
   text-align: left;
-  background: rgba(20,14,13,0.85);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem 1.25rem;
-  backdrop-filter: blur(6px);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.015) 45%, rgba(0,0,0,0.05)),
+    rgba(35,18,16,0.55);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 28px;
+  padding: 1.5rem 1.75rem;
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.12);
 }
-.testimonial p{ font-size: 0.9rem; color: var(--text); margin-bottom: 0.6rem; }
-.testimonial cite{ font-style: normal; font-size: 0.8rem; color: var(--text-faint); }
+.testimonial p{ font-size: 1rem; line-height: 1.4; color: var(--text); margin-bottom: 0.9rem; }
+.testimonial cite{ font-style: normal; font-size: 0.85rem; color: var(--text-faint); }
 .testimonial .name{ color: var(--orange); font-weight: 600; }
-
-.t1{ left: 0; top: 0; }
-.t2{ right: 0; top: 40px; }
-.t3{ left: 12%; top: 150px; }
-.t4{ right: 8%; top: 190px; }
+ 
+.t1{ left: 0; top: 0; border-bottom-left-radius: 0px;}
+.t2{ right: 2%; left: auto; top: 50px; border-bottom-right-radius: 0px; }
+.t3{ left: 15%; top: 170px; border-bottom-left-radius: 0px;}
+.t4{ right: 20%; top: 250px; border-bottom-right-radius: 0px;}
+ 
 
 /* =========================================================
    FOOTER

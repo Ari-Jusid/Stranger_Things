@@ -709,6 +709,307 @@ a {
   margin-top: 30px;
   color: var(--text-muted);
 }
+
+/* GALERIA */
+
+/* =========================================================
+   GALERÍA — pegá esto en tu style.css junto a tus otras
+   secciones (usa los mismos tokens :root que ya tenés)
+========================================================= */
+
+.galeria-section {
+  padding: 6rem 32px 7rem;
+}
+
+.galeria-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.galeria-header h2 {
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: .5px;
+  margin-bottom: .8rem;
+}
+
+.galeria-header p {
+  color: var(--text-muted);
+  max-width: 46ch;
+  margin: 0 auto;
+}
+
+/* ---- mosaico superior: una sola grilla, sin cajas sueltas ---- */
+.galeria-hero {
+  position: relative;
+  margin-bottom: 4.5rem;
+}
+ 
+.galeria-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+ 
+.galeria-header h2 {
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: .5px;
+  margin-bottom: .8rem;
+}
+ 
+.galeria-header p {
+  color: var(--text-muted);
+  max-width: 46ch;
+  margin: 0 auto;
+}
+ 
+/* ---- mosaico superior: una sola grilla, sin cajas sueltas ---- */
+.galeria-mosaico {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.3fr 0.5fr 0.3fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  height: 320px;
+  width: 72%;
+}
+ 
+.mosaico-item {
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background-image: linear-gradient(180deg, rgba(15, 2, 2, 0) 50%, rgba(15, 2, 2, .65)),
+    url("https://img.magnific.com/foto-gratis/cascada-naturaleza-tailandia_335224-989.jpg?semt=ais_hybrid&w=740&q=80");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+}
+ 
+.mosaico-a1     { grid-column: 1; grid-row: 1; }
+.mosaico-a2     { grid-column: 1; grid-row: 2; }
+.mosaico-centro { grid-column: 2; grid-row: 1 / 3; }
+.mosaico-b1     { grid-column: 3; grid-row: 1; }
+.mosaico-b2     { grid-column: 3; grid-row: 2; }
+ 
+/* las de los costados salen de la grilla: se anclan a .galeria-hero
+   (position:relative) y llegan hasta el borde de la pantalla con
+   translateX(±50vw), y arriba/abajo hasta el alto completo del hero
+   (header + mosaico), quedando más altas que el resto */
+.mosaico-edge-left,
+.mosaico-edge-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 16vw;
+  min-width: 170px;
+  max-width: 260px;
+  z-index: 0;
+}
+ 
+.mosaico-edge-left {
+  left: 50%;
+  transform: translateX(-50vw);
+  border-radius: 0 14px 14px 0;
+}
+ 
+.mosaico-edge-right {
+  right: 50%;
+  transform: translateX(50vw);
+  border-radius: 14px 0 0 14px;
+}
+.mosaico-fixed-btn {
+  position: absolute;
+  right: 24px;
+  bottom: -18px;
+  box-shadow: 0 12px 30px rgba(244, 50, 11, .35);
+  z-index: 2;
+}
+
+/* ---- filtros ---- */
+.galeria-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem;
+  margin-bottom: .75rem;
+}
+
+.filtro-tag {
+  font-family: var(--font-body);
+  font-size: .85rem;
+  padding: .55rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+}
+
+.filtro-tag:hover {
+  border-color: rgba(244, 239, 233, .35);
+  color: var(--text);
+}
+
+.filtro-tag.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.galeria-count {
+  color: var(--text-faint);
+  font-size: .85rem;
+  margin: 2.5rem 0 1.25rem;
+}
+
+/* ---- grilla de imágenes ---- */
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.galeria-card {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  background-image: url("https://img.magnific.com/foto-gratis/cascada-naturaleza-tailandia_335224-989.jpg?semt=ais_hybrid&w=740&q=80");
+  background-size: cover;
+  background-position: center;
+}
+
+/* viñeta pareja arriba y abajo, para que el botón, el tag
+   y el caption siempre se lean bien sobre cualquier foto */
+.galeria-card:hover::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 2, 2, 0.397) 0%, transparent 28%, transparent 65%, rgba(15, 2, 2, 0.589) 100%);
+  pointer-events: none;
+}
+
+.card-fav {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 239, 233, .35);
+  background: rgba(15, 2, 2, .55);
+  backdrop-filter: blur(4px);
+  color: var(--text);
+  cursor: pointer;
+  z-index: 2;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.card-fav svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: fill .15s ease, stroke .15s ease;
+}
+ 
+.card-fav:hover {
+  border-color: var(--orange);
+  transform: scale(1.06);
+}
+ 
+.card-fav.is-fav {
+  border-color: var(--orange);
+}
+ 
+.card-fav.is-fav svg {
+  fill: var(--orange);
+  stroke: var(--orange);
+}
+ 
+/* tarjetas ocultas por el filtro activo */
+.galeria-card.is-hidden {
+  display: none;
+}
+
+.card-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  background: rgba(15, 2, 2, .55);
+  backdrop-filter: blur(4px);
+  color: white;
+  font-size: .7rem;
+  z-index: 1;
+}
+
+.galeria-card figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.6rem 1rem .9rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 1;
+}
+
+.galeria-card figcaption h3 {
+  font-family: var(--font-body);
+  font-size: .95rem;
+  font-weight: 600;
+  margin-bottom: .15rem;
+}
+
+.galeria-card figcaption p {
+  font-size: .78rem;
+  color: var(--text-muted);
+}
+
+.galeria-card:hover .card-remove,
+.galeria-card:hover figcaption,
+.galeria-card.is-open .card-remove,
+.galeria-card.is-open figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sin-resultados {
+  display: none;
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .galeria-hero {
+    margin-bottom: 3rem;
+  }
+  .galeria-mosaico {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 140px);
+    height: auto;
+  }
+  .mosaico-a1     { grid-column: 1; grid-row: 1; }
+  .mosaico-a2     { grid-column: 2; grid-row: 1; }
+  .mosaico-centro { grid-column: 1 / -1; grid-row: 2; border-radius: 14px; }
+  .mosaico-b1, .mosaico-b2 { display: none; }
+  /* los laterales full-bleed no aportan en pantallas chicas: se ocultan */
+  .mosaico-edge-left, .mosaico-edge-right { display: none; }
+  .mosaico-fixed-btn { position: static; margin: 1rem auto 0; display: block; }
+}
+
 /* =========================================================
    FOOTER
 ========================================================= */

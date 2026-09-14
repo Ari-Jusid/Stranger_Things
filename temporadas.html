@@ -10,55 +10,333 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mail" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+ <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <!-- ===================== HEADER ===================== -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <nav class="main-nav">
-        <a href="index.html">
-          <img src="img/minilogoST.png" alt="" class="miniLogo">
-        </a>
-
-        <a href="personajes.html">Personajes</a>
-
-        <div class="nav-dropdown">
-          <a href="temporadas.html" class="has-caret">
-            Temporadas <span class="caret">▾</span>
+    <header class="site-header">
+        <div class="cont header-inner">
+            <nav class="main-nav pt-4">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 30%;">
+          <a href="index.html">
+            <img src="img/minilogoST.png" alt="" class="miniLogo">
           </a>
 
-          <div class="dropdown-menu">
-            <a href="temporadas.html">Temporada 1</a>
-            <a href="temporadas.html">Temporada 2</a>
-            <a href="temporadas.html">Temporada 3</a>
-            <a href="temporadas.html">Temporada 4</a>
-            <a href="temporadas.html">Temporada 5</a>
-          </div>
-        </div>
+          <a href="personajes.html">Personajes</a>
 
-        <a href="galeria.html">Galería</a>
-        <a href="quiz.html">Quiz</a>
+          <div class="nav-dropdown">
+            <a href="temporadas.html" class="has-caret">
+              Temporadas <span class="caret">▾</span>
+            </a>
+
+            <div class="dropdown-menu">
+              <a href="temporadas.html">Temporada 1</a>
+              <a href="temporadas.html">Temporada 2</a>
+              <a href="temporadas.html">Temporada 3</a>
+              <a href="temporadas.html">Temporada 4</a>
+              <a href="temporadas.html">Temporada 5</a>
+            </div>
+          </div>
+
+          <a href="galeria.html">Galería</a>
+          <a href="quiz.html">Quiz</a>
+        </div>
+        <div class="">
+          <a href="contacto.html"><span class="material-symbols-outlined fs-2">
+            mail
+          </span></a></div>
       </nav>
 
 
-      <div class="auth-buttons">
-        <button class="btn btn-ghost">Sign in</button>
-        <button class="btn btn-ghost">Sign up</button>
-      </div>
-    </div>
-  </header>
+        </div>
+    </header>
+
 
   <main>
     <div class="cursor-light"></div>
     <div class="cursor-trail"></div>
-   
+
+    <section class="temporada-hero">
+
+      <div class="temporada-hero-bg"></div>
+
+      <div class="temporada-hero-content">
+
+        <span class="temporada-anio">2016</span>
+
+        <h1>Temporada 1</h1>
+
+        <p>
+          En Hawkins, Indiana, la desaparición de Will Byers desencadena
+          una serie de acontecimientos extraños. Mientras sus amigos lo
+          buscan, descubren una niña con poderes, experimentos secretos
+          y una dimensión paralela conocida como el Upside Down.
+        </p>
+
+        <a href="#episodios" class="btn btn-primary">
+          Ver episodios
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- EPISODIOS -->
+    <section class="episodios-section" id="episodios">
+
+      <div class="episodios-container">
+
+        <div class="episodios-header">
+          <span>Temporada 1</span>
+          <h2>Episodios</h2>
+        </div>
+
+
+        <div class="episodios-grid">
+
+          <!-- EPISODIO 1 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-1"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">01</span>
+
+              <h3>The Vanishing of Will Byers</h3>
+
+              <p>
+                Will Byers desaparece misteriosamente de camino a casa.
+                Sus amigos comienzan a buscarlo mientras una extraña niña
+                aparece en el bosque.
+              </p>
+            </div>
+
+          </article>
+
+
+          <!-- EPISODIO 2 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-2"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">02</span>
+
+              <h3>The Weirdo on Maple Street</h3>
+
+              <p>
+                Mike, Dustin y Lucas esconden a Eleven y descubren que
+                tiene habilidades extraordinarias. Mientras tanto,
+                Joyce comienza a sospechar que Will intenta comunicarse.
+              </p>
+            </div>
+
+          </article>
+
+
+          <!-- EPISODIO 3 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-3"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">03</span>
+
+              <h3>Holly, Jolly</h3>
+
+              <p>
+                Joyce encuentra una forma inesperada de comunicarse con
+                Will, mientras Hopper empieza a investigar qué ocurre
+                realmente en Hawkins.
+              </p>
+            </div>
+
+          </article>
+
+
+          <!-- EPISODIO 4 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-4"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">04</span>
+
+              <h3>The Body</h3>
+
+              <p>
+                La búsqueda de Will da un giro cuando aparece un cuerpo
+                que parece poner fin al misterio. Sus amigos, sin embargo,
+                se niegan a creer que sea él.
+              </p>
+            </div>
+
+          </article>
+
+
+          <!-- EPISODIO 5 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-5"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">05</span>
+
+              <h3>The Flea and the Acrobat</h3>
+
+              <p>
+                Los chicos utilizan una explicación científica para
+                comprender la existencia de otra dimensión y encontrar
+                una forma de llegar hasta Will.
+              </p>
+            </div>
+
+          </article>
+
+
+          <!-- EPISODIO 6 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-6"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">06</span>
+
+              <h3>The Monster</h3>
+
+              <p>
+                Eleven revela parte de su pasado mientras Hopper y Joyce
+                intentan descubrir la verdad detrás del laboratorio y
+                encontrar una entrada al Upside Down.
+              </p>
+            </div>
+
+          </article>
+
+
+          <!-- EPISODIO 7 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-7"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">07</span>
+
+              <h3>The Bathtub</h3>
+
+              <p>
+                El grupo intenta utilizar los poderes de Eleven para
+                localizar a Will. Mientras tanto, Nancy y Jonathan se
+                preparan para enfrentarse a la criatura.
+              </p>
+            </div>
+
+          </article>
+
+
+          <!-- EPISODIO 8 -->
+          <article class="episodio-card">
+
+            <div class="episodio-img episodio-8"></div>
+
+            <div class="episodio-info">
+              <span class="episodio-numero">08</span>
+
+              <h3>The Upside Down</h3>
+
+              <p>
+                Joyce y Hopper entran al Upside Down para rescatar a
+                Will, mientras Eleven y los demás enfrentan al monstruo
+                en una batalla decisiva.
+              </p>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+<!-- ===================== VIDEO ===================== -->
+    <section class="video-section-temporada">
+      <div class="container">
+        <div class="tv-wrapper">
+          <div class="tv-video-wrap">
+            <iframe src="https://www.youtube.com/embed/xgCxY0qWRC4?rel=0&modestbranding=1&autoplay=1&mute=1"
+              title="Stranger Things - Video oficial de Netflix" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <img src="img/tvST.png" alt="Televisor retro" class="tv-image">
+        </div>
+      </div>
+    </section>
+
+  <section class="container mb-5">
+            <div class="row">
+                <h2 class="quiz-title">Posters oficiales de la temporada 1</h2>
+                <figure class="galeria-card poster col m-2" data-id="9" data-season="3">
+                    <button class="card-fav" aria-label="Agregar a favoritos">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path
+                                d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.2c2.3-1.1 4.8-.2 6.4 1.7L12 8l1-.9c1.6-1.9 4.1-2.8 6.4-1.7 3 1.4 3.6 4.9 1.9 7.7C18.7 16.65 12 21 12 21z" />
+                        </svg>
+                    </button>
+                    <span class="card-tag">T.3</span>
+                    <figcaption>
+                        <h3>Lorem ipsum</h3>
+                    </figcaption>
+                </figure>
+                <figure class="galeria-card poster col m-2" data-id="10" data-season="3">
+                    <button class="card-fav" aria-label="Agregar a favoritos">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path
+                                d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.2c2.3-1.1 4.8-.2 6.4 1.7L12 8l1-.9c1.6-1.9 4.1-2.8 6.4-1.7 3 1.4 3.6 4.9 1.9 7.7C18.7 16.65 12 21 12 21z" />
+                        </svg>
+                    </button>
+                    <span class="card-tag">T.3</span>
+                    <figcaption>
+                        <h3>Lorem ipsum</h3>
+                    </figcaption>
+                </figure>
+                <figure class="galeria-card poster col m-2" data-id="11" data-season="3">
+                    <button class="card-fav" aria-label="Agregar a favoritos">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path
+                                d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.2c2.3-1.1 4.8-.2 6.4 1.7L12 8l1-.9c1.6-1.9 4.1-2.8 6.4-1.7 3 1.4 3.6 4.9 1.9 7.7C18.7 16.65 12 21 12 21z" />
+                        </svg>
+                    </button>
+                    <span class="card-tag">T.3</span>
+                    <figcaption>
+                        <h3>Lorem ipsum</h3>
+                    </figcaption>
+                </figure>
+                <figure class="galeria-card poster col m-2" data-id="12" data-season="3">
+                    <button class="card-fav" aria-label="Agregar a favoritos">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path
+                                d="M12 21s-6.7-4.35-9.3-8.1C1 10.1 1.6 6.6 4.6 5.2c2.3-1.1 4.8-.2 6.4 1.7L12 8l1-.9c1.6-1.9 4.1-2.8 6.4-1.7 3 1.4 3.6 4.9 1.9 7.7C18.7 16.65 12 21 12 21z" />
+                        </svg>
+                    </button>
+                    <span class="card-tag">T.3</span>
+                    <figcaption>
+                        <h3>Lorem ipsum</h3>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="cont footer-inner">
       <div class="footer-brand">
         <img src="img/logoST.png" alt="">
         <p class="footer-desc">Un espacio para sumergirte en el universo de Stranger Things, recorrer sus historias,
@@ -102,12 +380,13 @@
     </div>
 
     <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
+      <div class="cont footer-bottom-inner">
         <p>Copyright © 2026 <span class="accent">Stranger Things</span> - Todos los derechos reservados</p>
         <p class="legal-links"><a href="#">Términos &amp; Condiciones</a> | <a href="#">Política de privacidad</a></p>
       </div>
     </div>
   </footer>
+    </main>
   <script src="script.js"></script>
 </body>
 

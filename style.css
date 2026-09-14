@@ -186,13 +186,18 @@ a {
 }
 
 .header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
   height: 68px;
   padding: 0 32px;
 }
 
+.header-inner-landing{
+  height: 68px;
+  padding: 0 32px;
+     display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .miniLogo {
   width: 50px;
   vertical-align: middle;
@@ -201,7 +206,9 @@ a {
 .main-nav {
   display: flex;
   gap: 2.2rem;
+    display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .main-nav a {
@@ -530,9 +537,11 @@ a {
 
 .tv-wrapper {
   position: relative;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
+
+
 
 /* la imagen manda el tamaño del bloque; el video se recorta debajo,
    asomando solo por el hueco transparente de la pantalla */
@@ -692,7 +701,9 @@ a {
   background-position: center;
   border-radius: 8px;
   filter: brightness(1);
-  transition: filter 0.5s ease;
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
 }
 
 .personajes-grid .protagonistaCard:nth-child(1) .perImg {
@@ -733,8 +744,11 @@ a {
 
 }
 
+
+
 .personajes-grid .perImg:hover {
-  filter: brightness(0.6);
+    transform: scale(1.02);
+  filter: brightness(0.8);
 
 }
 
@@ -862,7 +876,6 @@ a {
 .mosaico-item {
   position: relative;
   border-radius: 14px;
-  border: 1px solid var(--border);
   background-image: linear-gradient(180deg, rgba(15, 2, 2, 0) 50%, rgba(15, 2, 2, .65)),
     url("https://img.magnific.com/foto-gratis/cascada-naturaleza-tailandia_335224-989.jpg?semt=ais_hybrid&w=740&q=80");
   background-size: cover;
@@ -1095,6 +1108,257 @@ a {
   /* los laterales full-bleed no aportan en pantallas chicas: se ocultan */
   .mosaico-edge-left, .mosaico-edge-right { display: none; }
   .mosaico-fixed-btn { position: static; margin: 1rem auto 0; display: block; }
+}
+
+
+/* =========================================================
+   TEMPORADA
+========================================================= */
+
+.temporada-hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+/* Imagen del hero */
+
+.temporada-hero-bg {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(15, 2, 2, 0.95) 0%,
+      rgba(15, 2, 2, 0.82) 30%,
+      rgba(15, 2, 2, 0.35) 65%,
+      rgba(15, 2, 2, 0.15) 100%
+    ),
+    linear-gradient(
+      0deg,
+      var(--bg) 0%,
+      transparent 30%
+    ),
+    url("https://static.wikia.nocookie.net/strangerthings8338/images/6/6c/Upside_Down_-_Hawkins_Town_Square.png/revision/latest/scale-to-width-down/1200?cb=20251215050515");
+
+  background-size: cover;
+  background-position: center;
+
+  filter: brightness(0.85);
+}
+
+
+/* Contenido del hero */
+
+.temporada-hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 5rem 32px;
+}
+
+.temporada-anio {
+  display: block;
+
+  font-size: 1rem;
+  color: var(--text-muted);
+
+  margin-bottom: 0.3rem;
+}
+
+.temporada-hero h1 {
+  font-family: var(--font-body);
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1;
+
+  margin-bottom: 1rem;
+}
+
+.temporada-hero p {
+  max-width: 430px;
+
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+
+  margin-bottom: 1.8rem;
+}
+
+
+/* =========================================================
+   EPISODIOS
+========================================================= */
+
+.episodios-section {
+  padding: 3rem 32px 7rem;
+}
+
+.episodios-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+
+/* Encabezado */
+
+.episodios-header {
+  margin-bottom: 1.8rem;
+}
+
+.episodios-header span {
+  display: block;
+
+  color: var(--text-muted);
+  font-size: 0.9rem;
+
+  margin-bottom: 0.25rem;
+}
+
+.episodios-header h2 {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.episodios-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 2.8rem 3rem;
+}
+
+
+/* =========================================================
+   TARJETA
+========================================================= */
+
+.episodio-card {
+  min-width: 0;
+}
+
+
+/* Imagen */
+
+.episodio-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  border-radius: 8px;
+
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(15, 2, 2, 0) 50%,
+      rgba(15, 2, 2, 0.35) 100%
+    ),
+    url("https://static.wikia.nocookie.net/strangerthings8338/images/6/6c/Upside_Down_-_Hawkins_Town_Square.png/revision/latest/scale-to-width-down/1200?cb=20251215050515");
+
+  background-size: cover;
+  background-position: center;
+
+  margin-bottom: 0.9rem;
+
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
+}
+
+.episodio-card:hover .episodio-img {
+  transform: scale(1.02);
+  filter: brightness(0.8);
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.episodio-info {
+  position: relative;
+}
+
+.episodio-numero {
+  display: block;
+
+  font-size: 0.9rem;
+  color: var(--red);
+
+  font-weight: 600;
+
+  margin-bottom: 0.25rem;
+}
+
+.episodio-info h3 {
+  font-family: var(--font-body);
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  line-height: 1.25;
+
+  margin-bottom: 0.55rem;
+}
+
+.episodio-info p {
+  color: var(--text-muted);
+
+  font-size: 0.9rem;
+  line-height: 1.45;
+
+  max-width: 38ch;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .episodios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .temporada-hero {
+    min-height: 450px;
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  .temporada-hero-content {
+    padding: 4rem 24px;
+  }
+
+  .temporada-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .episodios-section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .episodios-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
 }
 
 /* =========================================================

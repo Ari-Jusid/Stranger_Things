@@ -1361,6 +1361,352 @@ a {
 
 }
 
+/*  */
+.invalid-feedback,
+.empty-feedback {
+  display: none;
+}
+
+.was-validated :placeholder-shown:invalid ~ .empty-feedback {
+  display: block;
+}
+
+.was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+  display: block;
+}
+
+.is-invalid,
+.was-validated :invalid {
+  border-color: #dc3545;
+}
+
+/* =========================================================
+   CONTACTO
+========================================================= */
+
+.contact-section {
+  position: relative;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2.8rem 32px;
+
+  overflow: hidden;
+}
+
+
+.fondoContacto {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      0deg,
+      var(--bg) 0%,
+      transparent 35%
+    ),
+    url("https://static.wikia.nocookie.net/strangerthings8338/images/6/6c/Upside_Down_-_Hawkins_Town_Square.png/revision/latest/scale-to-width-down/1200?cb=20251215050515");
+
+  background-size: cover;
+  background-position: center;
+}
+/* Fondo */
+
+
+
+
+/* Contenedor */
+
+.contact-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 700px);
+
+  padding: 2rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.02)
+    ),
+    rgba(18, 11, 10, 0.75);
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(244, 50, 11, 0.08);
+}
+
+
+/* Header */
+
+.contact-header {
+  margin-bottom: 2.5rem;
+}
+
+
+.contact-header span {
+  display: block;
+
+  color: var(--orange);
+
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 0.6rem;
+}
+
+
+.contact-header h1 {
+  font-size: 2rem;
+
+  font-weight: 600;
+
+  margin-bottom: 0.8rem;
+
+  color: var(--text);
+}
+
+
+.contact-header p {
+  color: var(--text-muted);
+
+  max-width: 50ch;
+}
+
+
+/* Formulario */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+/* Dos columnas */
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1.2rem;
+}
+
+
+/* Grupo */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.55rem;
+}
+
+
+.form-group label {
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  color: var(--text);
+}
+
+
+/* Inputs */
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  border: 1px solid var(--border);
+
+  background: rgba(244, 239, 233, 0.05);
+
+  color: var(--text);
+
+  padding: 0.5rem 0.9rem;
+
+  border-radius: 6px;
+
+  font-family: var(--font-body);
+
+  font-size: 0.95rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* Focus */
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--orange);
+
+  background: rgba(244, 239, 233, 0.07);
+
+  box-shadow:
+    0 0 0 3px rgba(244, 50, 11, 0.1);
+}
+
+
+/* Placeholder */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-faint);
+}
+
+
+/* Textarea */
+
+.form-group textarea {
+  min-height: 150px;
+
+  resize: vertical;
+}
+
+
+/* Footer */
+
+.contact-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-top: 0.5rem;
+}
+
+
+/* Checkbox */
+
+.checkbox-container {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.6rem;
+
+  color: var(--text-muted);
+
+  font-size: 0.8rem;
+
+  cursor: pointer;
+}
+
+
+.checkbox-container input {
+  accent-color: var(--orange);
+
+  width: 15px;
+  height: 15px;
+}
+
+
+/* Botón */
+
+.contact-footer .btn {
+  white-space: nowrap;
+}
+
+
+/* Errores */
+
+.error-message {
+  min-height: 16px;
+
+  color: #ff6b5e;
+
+  font-size: 0.75rem;
+}
+
+
+.form-group.error input,
+.form-group.error textarea {
+  border-color: #ff5c5c;
+}
+
+
+/* Success */
+
+.form-success {
+  display: none;
+
+  padding: 0.9rem 1rem;
+
+  border-radius: 6px;
+
+  background: rgba(244, 50, 11, 0.1);
+
+  border: 1px solid rgba(244, 50, 11, 0.4);
+
+  color: var(--text);
+
+  font-size: 0.9rem;
+}
+
+
+.form-success.show {
+  display: block;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .contact-section {
+    padding: 4rem 20px;
+  }
+
+
+  .contact-container {
+    padding: 2rem 1.4rem;
+  }
+
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+
+  .contact-footer {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .contact-footer .btn {
+    width: 100%;
+  }
+
+}
+
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -1369,7 +1715,7 @@ a {
   padding-top: 4rem;
   padding-right: 4rem;
   padding-left: 4rem;
-
+  background: var(--bg);
 }
 
 .footer-inner {
@@ -1457,6 +1803,7 @@ a {
 .legal-links a:hover {
   color: var(--text);
 }
+
 
 /* =========================================================
    RESPONSIVE

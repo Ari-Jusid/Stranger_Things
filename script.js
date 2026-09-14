@@ -169,3 +169,196 @@ if (buscador) {
 
             pintarFavoritos();
             aplicarFiltro('todas');
+
+
+(function () {
+  "use strict";
+  /*
+   * Form Validation
+   */
+
+  // Fetch all the forms we want to apply custom validation styles to
+  const forms = document.querySelectorAll(".needs-validation");
+  const result = document.getElementById("result");
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      "submit",
+      function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          form.querySelectorAll(":invalid")[0].focus();
+        } else {
+          /*
+           * Form Submission using fetch()
+           */
+
+          const formData = new FormData(form);
+          event.preventDefault();
+          event.stopPropagation();
+          const object = {};
+          formData.forEach((value, key) => {
+            object[key] = value;
+          });
+          const json = JSON.stringify(object);
+          result.innerHTML = "Please wait...";
+
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            },
+            body: json
+          })
+            .then(async (response) => {
+              let json = await response.json();
+              if (response.status == 200) {
+                result.innerHTML = json.message;
+                result.classList.remove("text-gray-500");
+                result.classList.add("text-green-500");
+              } else {
+                console.log(response);
+                result.innerHTML = json.message;
+                result.classList.remove("text-gray-500");
+                result.classList.add("text-red-500");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+              result.innerHTML = "Something went wrong!";
+            })
+            .then(function () {
+              form.reset();
+              form.classList.remove("was-validated");
+              setTimeout(() => {
+                result.style.display = "none";
+              }, 5000);
+            });
+        }
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();
+
+
+const form = document.getElementById("contactForm");
+
+const nombre = document.getElementById("nombre");
+const email = document.getElementById("email");
+const asunto = document.getElementById("asunto");
+const mensaje = document.getElementById("mensaje");
+const terminos = document.getElementById("terminos");
+
+const formSuccess = document.getElementById("formSuccess");
+
+
+form.addEventListener("submit", function (e) {
+
+  e.preventDefault();
+
+  let valido = true;
+
+  // Limpiar errores anteriores
+
+  document.querySelectorAll(".form-group").forEach(group => {
+    group.classList.remove("error");
+  });
+
+  document.querySelectorAll(".error-message").forEach(error => {
+    error.textContent = "";
+  });
+
+
+  // Nombre
+
+  if (nombre.value.trim() === "") {
+
+    mostrarError(nombre, "Por favor ingresá tu nombre.");
+
+    valido = false;
+
+  }
+
+
+  // Email
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email.value.trim())) {
+
+    mostrarError(email, "Ingresá un email válido.");
+
+    valido = false;
+
+  }
+
+
+  // Asunto
+
+  if (asunto.value.trim() === "") {
+
+    mostrarError(asunto, "Ingresá un asunto.");
+
+    valido = false;
+
+  }
+
+
+  // Mensaje
+
+  if (mensaje.value.trim().length < 10) {
+
+    mostrarError(
+      mensaje,
+      "El mensaje debe tener al menos 10 caracteres."
+    );
+
+    valido = false;
+
+  }
+
+
+  // Checkbox
+
+  if (!terminos.checked) {
+
+    alert("Tenés que aceptar ser contactado.");
+
+    valido = false;
+
+  }
+
+
+  // Envío correcto
+
+  if (valido) {
+
+    formSuccess.textContent =
+      "¡Mensaje enviado correctamente! Nos pondremos en contacto pronto.";
+
+    formSuccess.classList.add("show");
+
+    form.reset();
+
+  }
+
+});
+
+
+function mostrarError(input, mensajeError) {
+
+  const formGroup = input.closest(".form-group");
+
+  const errorMessage =
+    formGroup.querySelector(".error-message");
+
+  formGroup.classList.add("error");
+
+  errorMessage.textContent = mensajeError;
+
+}

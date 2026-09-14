@@ -104,3 +104,68 @@ if (buscador) {
     });
 
 }
+
+
+ const FAVS_KEY = 'st-galeria-favoritos';
+            const cards = document.querySelectorAll('.galeria-card');
+            const filtros = document.querySelectorAll('.filtro-tag');
+            const countEl = document.querySelector('.galeria-count');
+            const sinResultados2 = document.querySelector('.sin-resultados');
+
+            function getFavoritos() {
+                return JSON.parse(localStorage.getItem(FAVS_KEY) || '[]');
+            }
+
+            function guardarFavoritos(favs) {
+                localStorage.setItem(FAVS_KEY, JSON.stringify(favs));
+            }
+
+            function pintarFavoritos() {
+                const favs = getFavoritos();
+                cards.forEach(card => {
+                    const btn = card.querySelector('.card-fav');
+                    btn.classList.toggle('is-fav', favs.includes(card.dataset.id));
+                });
+            }
+
+            function aplicarFiltro(filtro) {
+                const favs = getFavoritos();
+                let visibles = 0;
+                cards.forEach(card => {
+                    let mostrar = true;
+                    if (filtro === 'favoritos') {
+                        mostrar = favs.includes(card.dataset.id);
+                    } else if (filtro !== 'todas') {
+                        mostrar = card.dataset.season === filtro;
+                    }
+                    card.classList.toggle('is-hidden', !mostrar);
+                    if (mostrar) visibles++;
+                });
+                countEl.textContent = `${visibles} imagen${visibles === 1 ? '' : 'es'}`;
+                sinResultados2.style.display = visibles === 0 ? 'block' : 'none';
+            }
+
+            document.querySelectorAll('.card-fav').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const card = btn.closest('.galeria-card');
+                    const id = card.dataset.id;
+                    let favs = getFavoritos();
+                    favs = favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id];
+                    guardarFavoritos(favs);
+                    pintarFavoritos();
+
+                    const activo = document.querySelector('.filtro-tag.active');
+                    if (activo && activo.dataset.filter === 'favoritos') aplicarFiltro('favoritos');
+                });
+            });
+
+            filtros.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    filtros.forEach(t => t.classList.remove('active'));
+                    tag.classList.add('active');
+                    aplicarFiltro(tag.dataset.filter);
+                });
+            });
+
+            pintarFavoritos();
+            aplicarFiltro('todas');

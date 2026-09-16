@@ -112,6 +112,12 @@ if (buscador) {
             const countEl = document.querySelector('.galeria-count');
             const sinResultados2 = document.querySelector('.sin-resultados');
 
+            cards.forEach(card => {
+              if (card.dataset.imageUrl) {
+                card.style.backgroundImage = `url("${card.dataset.imageUrl}")`;
+              }
+            });
+
             function getFavoritos() {
                 return JSON.parse(localStorage.getItem(FAVS_KEY) || '[]');
             }
@@ -171,7 +177,9 @@ if (buscador) {
               function actualizarLightbox() {
                 const card = lightboxCards[lightboxIndex];
                 if (!card) return;
-                lightboxImage.style.backgroundImage = getComputedStyle(card).backgroundImage;
+                lightboxImage.style.backgroundImage = card.dataset.imageUrl
+                    ? `url("${card.dataset.imageUrl}")`
+                    : getComputedStyle(card).backgroundImage;
                 lightboxImage.setAttribute('aria-label', card.querySelector('h3')?.textContent || 'Imagen de la galería');
                 lightboxPrev.disabled = lightboxCards.length < 2;
                 lightboxNext.disabled = lightboxCards.length < 2;

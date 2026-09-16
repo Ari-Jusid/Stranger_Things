@@ -979,16 +979,6 @@ a {
   background-position: center;
 }
 
-.galeria-card:nth-child(2) {
-  position: relative;
-  aspect-ratio: 3 / 2;
-  border-radius: 12px;
-  overflow: hidden;
-  background-image: url("https://static.wikia.nocookie.net/strangerthings8338/images/6/6c/Upside_Down_-_Hawkins_Town_Square.png/revision/latest/scale-to-width-down/1200?cb=20251215050515");
-  background-size: cover;
-  background-position: center;
-}
-
 /* viñeta pareja arriba y abajo, para que el botón, el tag
    y el caption siempre se lean bien sobre cualquier foto */
 .galeria-card:hover::before{

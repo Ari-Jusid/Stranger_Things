@@ -979,6 +979,16 @@ a {
   background-position: center;
 }
 
+.galeria-card:nth-child(2) {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  background-image: url("https://static.wikia.nocookie.net/strangerthings8338/images/6/6c/Upside_Down_-_Hawkins_Town_Square.png/revision/latest/scale-to-width-down/1200?cb=20251215050515");
+  background-size: cover;
+  background-position: center;
+}
+
 /* viñeta pareja arriba y abajo, para que el botón, el tag
    y el caption siempre se lean bien sobre cualquier foto */
 .galeria-card:hover::before{
@@ -1135,6 +1145,49 @@ a {
 .lightbox-close:hover {
   border-color: var(--orange);
   color: var(--orange);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(244, 239, 233, .45);
+  border-radius: 50%;
+  background: rgba(15, 2, 2, .7);
+  color: var(--text);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev {
+  left: 2rem;
+}
+
+.lightbox-next {
+  right: 2rem;
+}
+
+.lightbox-nav:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+@media (max-width: 600px) {
+  .lightbox-nav {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .lightbox-prev {
+    left: .75rem;
+  }
+
+  .lightbox-next {
+    right: .75rem;
+  }
 }
 
 body.lightbox-open {

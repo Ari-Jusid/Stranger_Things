@@ -163,6 +163,25 @@ if (buscador) {
               const lightbox = document.querySelector('#galeria-lightbox');
               const lightboxImage = lightbox?.querySelector('.lightbox-image');
               const lightboxClose = lightbox?.querySelector('.lightbox-close');
+              const lightboxPrev = lightbox?.querySelector('.lightbox-prev');
+              const lightboxNext = lightbox?.querySelector('.lightbox-next');
+              let lightboxCards = [];
+              let lightboxIndex = 0;
+
+              function actualizarLightbox() {
+                const card = lightboxCards[lightboxIndex];
+                if (!card) return;
+                lightboxImage.style.backgroundImage = getComputedStyle(card).backgroundImage;
+                lightboxImage.setAttribute('aria-label', card.querySelector('h3')?.textContent || 'Imagen de la galería');
+                lightboxPrev.disabled = lightboxCards.length < 2;
+                lightboxNext.disabled = lightboxCards.length < 2;
+              }
+
+              function navegarLightbox(direccion) {
+                if (lightboxCards.length < 2) return;
+                lightboxIndex = (lightboxIndex + direccion + lightboxCards.length) % lightboxCards.length;
+                actualizarLightbox();
+              }
 
               function cerrarLightbox() {
                 if (!lightbox) return;
@@ -171,11 +190,12 @@ if (buscador) {
                 document.body.classList.remove('lightbox-open');
               }
 
-              if (lightbox && lightboxImage && lightboxClose) {
+              if (lightbox && lightboxImage && lightboxClose && lightboxPrev && lightboxNext) {
                 cards.forEach(card => {
                   card.addEventListener('click', () => {
-                    lightboxImage.style.backgroundImage = getComputedStyle(card).backgroundImage;
-                    lightboxImage.setAttribute('aria-label', card.querySelector('h3')?.textContent || 'Imagen de la galería');
+                    lightboxCards = [...cards].filter(item => !item.classList.contains('is-hidden'));
+                    lightboxIndex = lightboxCards.indexOf(card);
+                    actualizarLightbox();
                     lightbox.classList.add('is-visible');
                     lightbox.setAttribute('aria-hidden', 'false');
                     document.body.classList.add('lightbox-open');
@@ -184,12 +204,25 @@ if (buscador) {
                 });
 
                 lightboxClose.addEventListener('click', cerrarLightbox);
+                lightboxPrev.addEventListener('click', () => navegarLightbox(-1));
+                lightboxNext.addEventListener('click', () => navegarLightbox(1));
                 lightbox.addEventListener('click', event => {
                   if (event.target === lightbox) cerrarLightbox();
                 });
                 document.addEventListener('keydown', event => {
                   if (event.key === 'Escape') cerrarLightbox();
+                  if (event.key === 'ArrowLeft') navegarLightbox(-1);
+                  if (event.key === 'ArrowRight') navegarLightbox(1);
                 });
+
+                let touchStartX = 0;
+                lightboxImage.addEventListener('touchstart', event => {
+                  touchStartX = event.changedTouches[0].screenX;
+                }, { passive: true });
+                lightboxImage.addEventListener('touchend', event => {
+                  const distance = event.changedTouches[0].screenX - touchStartX;
+                  if (Math.abs(distance) > 50) navegarLightbox(distance > 0 ? -1 : 1);
+                }, { passive: true });
               }
 
             filtros.forEach(tag => {

@@ -146,7 +146,8 @@ if (buscador) {
             }
 
             document.querySelectorAll('.card-fav').forEach(btn => {
-                btn.addEventListener('click', () => {
+              btn.addEventListener('click', (event) => {
+                event.stopPropagation();
                     const card = btn.closest('.galeria-card');
                     const id = card.dataset.id;
                     let favs = getFavoritos();
@@ -158,6 +159,38 @@ if (buscador) {
                     if (activo && activo.dataset.filter === 'favoritos') aplicarFiltro('favoritos');
                 });
             });
+
+              const lightbox = document.querySelector('#galeria-lightbox');
+              const lightboxImage = lightbox?.querySelector('.lightbox-image');
+              const lightboxClose = lightbox?.querySelector('.lightbox-close');
+
+              function cerrarLightbox() {
+                if (!lightbox) return;
+                lightbox.classList.remove('is-visible');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('lightbox-open');
+              }
+
+              if (lightbox && lightboxImage && lightboxClose) {
+                cards.forEach(card => {
+                  card.addEventListener('click', () => {
+                    lightboxImage.style.backgroundImage = getComputedStyle(card).backgroundImage;
+                    lightboxImage.setAttribute('aria-label', card.querySelector('h3')?.textContent || 'Imagen de la galería');
+                    lightbox.classList.add('is-visible');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    document.body.classList.add('lightbox-open');
+                    lightboxClose.focus();
+                  });
+                });
+
+                lightboxClose.addEventListener('click', cerrarLightbox);
+                lightbox.addEventListener('click', event => {
+                  if (event.target === lightbox) cerrarLightbox();
+                });
+                document.addEventListener('keydown', event => {
+                  if (event.key === 'Escape') cerrarLightbox();
+                });
+              }
 
             filtros.forEach(tag => {
                 tag.addEventListener('click', () => {

@@ -1090,6 +1090,57 @@ a {
   color: var(--text-muted);
 }
 
+.galeria-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(8, 4, 4, .92);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.galeria-lightbox.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-image {
+  width: min(92vw, 1200px);
+  height: min(86vh, 800px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 3rem;
+  right: 15rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(244, 239, 233, .45);
+  border-radius: 50%;
+  background: rgba(15, 2, 2, .7);
+  color: var(--text);
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
 
 
 @media (max-width: 900px) {

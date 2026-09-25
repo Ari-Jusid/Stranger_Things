@@ -147,8 +147,12 @@ if (buscador) {
                     card.classList.toggle('is-hidden', !mostrar);
                     if (mostrar) visibles++;
                 });
-                countEl.textContent = `${visibles} imagen${visibles === 1 ? '' : 'es'}`;
-                sinResultados2.style.display = visibles === 0 ? 'block' : 'none';
+                if (countEl) {
+                  countEl.textContent = `${visibles} imagen${visibles === 1 ? '' : 'es'}`;
+                }
+                if (sinResultados2) {
+                  sinResultados2.style.display = visibles === 0 ? 'block' : 'none';
+                }
             }
 
             document.querySelectorAll('.card-fav').forEach(btn => {
@@ -320,7 +324,7 @@ if (buscador) {
 })();
 
 
-const form = document.getElementById("contactForm");
+const contactForm = document.getElementById("contactForm");
 
 const nombre = document.getElementById("nombre");
 const email = document.getElementById("email");
@@ -331,7 +335,8 @@ const terminos = document.getElementById("terminos");
 const formSuccess = document.getElementById("formSuccess");
 
 
-form.addEventListener("submit", function (e) {
+if (contactForm) {
+contactForm.addEventListener("submit", function (e) {
 
   e.preventDefault();
 
@@ -417,11 +422,12 @@ form.addEventListener("submit", function (e) {
 
     formSuccess.classList.add("show");
 
-    form.reset();
+    contactForm.reset();
 
   }
 
 });
+}
 
 
 function mostrarError(input, mensajeError) {
@@ -435,4 +441,165 @@ function mostrarError(input, mensajeError) {
 
   errorMessage.textContent = mensajeError;
 
+}
+
+//QUIZ
+
+try {
+  var form = document.getElementById('quizForm');
+  var submitBtn = document.getElementById('quizSubmit');
+  var resultModal = document.getElementById('quizResultModal');
+  var resultClose = document.getElementById('quizResultClose');
+  var resultName = document.getElementById('quizResultName');
+  var resultImage = document.getElementById('quizResultImage');
+  var resultDescription = document.getElementById('quizResultDescription');
+  var allRadios = Array.prototype.slice.call(form.querySelectorAll('input[type="radio"]'));
+ 
+  // total de preguntas = cantidad de grupos de radios distintos que hay en el form
+  var groupNames = {};
+  allRadios.forEach(function(r){ groupNames[r.name] = true; });
+  var totalQuestions = Object.keys(groupNames).length;
+ 
+  function checkCompletion(){
+    var checked = form.querySelectorAll('input[type="radio"]:checked');
+    var answeredNames = {};
+    for (var i = 0; i < checked.length; i++){ answeredNames[checked[i].name] = true; }
+    var answeredCount = Object.keys(answeredNames).length;
+    submitBtn.disabled = answeredCount < totalQuestions;
+  }
+ 
+  function onRadioChange(e){
+    var input = e.target || e.srcElement;
+    if (!input || input.type !== 'radio') return;
+ 
+    var name = input.name;
+ 
+    // sacar el resaltado a las otras opciones de esta misma pregunta
+    var group = form.querySelectorAll('input[name="' + name + '"]');
+    for (var i = 0; i < group.length; i++){
+      var opt = group[i].closest ? group[i].closest('.quiz-option') : group[i].parentElement;
+      if (opt) {
+        if (group[i].checked) { opt.classList.add('is-selected'); }
+        else { opt.classList.remove('is-selected'); }
+      }
+    }
+ 
+    // tildar el ítem correspondiente en el sidebar
+    var navItem = document.querySelector('.quiz-nav-item[data-nav-for="' + name + '"]');
+    if (navItem) navItem.classList.add('is-answered');
+ 
+    checkCompletion();
+  }
+ 
+  // delegado en el form (por si acaso) + listener directo en cada radio (a prueba de balas)
+  form.addEventListener('change', onRadioChange);
+  allRadios.forEach(function(r){
+    r.addEventListener('change', onRadioChange);
+    r.addEventListener('click', onRadioChange);
+  });
+ 
+  // evalúa el estado ni bien carga la página: si el navegador restauró
+  // respuestas ya tildadas (recarga, botón "atrás", autocompletado), esto
+  // evita que el botón se quede disabled aunque ya esté todo contestado
+  checkCompletion();
+  allRadios.forEach(function(input){
+    if (!input.checked) return;
+    var opt = input.closest ? input.closest('.quiz-option') : input.parentElement;
+    if (opt) opt.classList.add('is-selected');
+    var nav = document.querySelector('.quiz-nav-item[data-nav-for="' + input.name + '"]');
+    if (nav) nav.classList.add('is-answered');
+  });
+ 
+  var questions = Array.prototype.slice.call(form.querySelectorAll('.quiz-question'));
+ 
+  // resaltar en el sidebar la pregunta que está a la vista mientras se hace scroll
+  var navItems = Array.prototype.slice.call(document.querySelectorAll('.quiz-nav-item'));
+  if (window.IntersectionObserver) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        var qNum = entry.target.getAttribute('data-question');
+        navItems.forEach(function(item){ item.classList.remove('is-current'); });
+        var current = navItems[qNum - 1];
+        if (current) current.classList.add('is-current');
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+ 
+    questions.forEach(function(q){ observer.observe(q); });
+  }
+ 
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var checked = form.querySelectorAll('input[type="radio"]:checked');
+    var conteo = {};
+    for (var i = 0; i < checked.length; i++){
+      var v = checked[i].value;
+      conteo[v] = (conteo[v] || 0) + 1;
+    }
+    var mejor = null, mejorCant = -1;
+    for (var key in conteo){
+      if (conteo[key] > mejorCant) { mejor = key; mejorCant = conteo[key]; }
+    }
+ 
+    var nombres = {
+      lider: 'Una persona líder, decidida a tomar acción cuando el grupo más lo necesita.',
+      protector: 'Alguien protector, que siempre piensa primero en cuidar a los demás.',
+      curioso: 'Un espíritu curioso, atraído por lo desconocido y las respuestas difíciles.',
+      leal: 'Un compañero leal, el que nunca abandona al grupo pase lo que pase.'
+    };
+ 
+    var personajes = {
+      lider: {
+        nombre: 'Mike Wheeler',
+        imagen: 'https://i.pinimg.com/1200x/7a/54/80/7a5480c2c534586667418a378ae63da4.jpg',
+        descripcion: nombres.lider
+      },
+      protector: {
+        nombre: 'Eleven',
+        imagen: 'https://i.pinimg.com/736x/81/ee/d7/81eed76772fcf3b9524fffb8b2dc37e9.jpg',
+        descripcion: nombres.protector
+      },
+      curioso: {
+        nombre: 'Dustin Henderson',
+        imagen: 'https://i.pinimg.com/736x/47/f8/b6/47f8b6cbaf3d49412a03f64fd2cf5cc8.jpg',
+        descripcion: nombres.curioso
+      },
+      leal: {
+        nombre: 'Will Byers',
+        imagen: 'https://i.pinimg.com/1200x/f0/99/60/f0996059f55756e352d476456e41ac30.jpg',
+        descripcion: nombres.leal
+      }
+    };
+
+    var personaje = personajes[mejor];
+    if (!personaje || !resultModal) return;
+
+    resultName.textContent = personaje.nombre;
+    resultImage.src = personaje.imagen;
+    resultImage.alt = personaje.nombre;
+    resultDescription.textContent = personaje.descripcion;
+    resultModal.classList.add('is-visible');
+    resultModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('quiz-modal-open');
+    resultClose.focus();
+  });
+
+  function closeResultModal() {
+    if (!resultModal) return;
+    resultModal.classList.remove('is-visible');
+    resultModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('quiz-modal-open');
+  }
+
+  if (resultClose) resultClose.addEventListener('click', closeResultModal);
+  if (resultModal) {
+    resultModal.addEventListener('click', function(e) {
+      if (e.target === resultModal) closeResultModal();
+    });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeResultModal();
+  });
+} catch (err) {
+  console.error('Error en el script del quiz:', err);
 }

@@ -859,11 +859,24 @@ a {
 .mosaico-item {
   position: relative;
   border-radius: 14px;
-  background-image: linear-gradient(180deg, rgba(15, 2, 2, 0) 50%, rgba(15, 2, 2, .65)),
-    url("https://img.magnific.com/foto-gratis/cascada-naturaleza-tailandia_335224-989.jpg?semt=ais_hybrid&w=740&q=80");
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+}
+
+.mosaico-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 2, 2, 0) 50%, rgba(15, 2, 2, .65));
+  pointer-events: none;
+}
+
+.mosaico-item > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
  
 .mosaico-a1     { grid-column: 1; grid-row: 1; }
@@ -970,6 +983,11 @@ a {
   transition: filter .25s ease;
 }
 
+.galeria-card:not(.poster) > img {
+  object-fit: cover;
+  object-position: center;
+}
+
 .galeria-card.poster {
   background: #090606;
 }
@@ -979,6 +997,10 @@ a {
 }
 
 .galeria-card.poster figcaption {
+  display: none;
+}
+
+.temporada-posters .card-fav {
   display: none;
 }
 
@@ -1089,6 +1111,19 @@ a {
 
 .poster{
   height: 500px;
+}
+
+.temporada-posters .row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.temporada-posters .poster {
+  width: auto;
+  min-width: 0;
+  flex: none;
+  margin: 0 !important;
 }
 
 .sin-resultados {

@@ -122,15 +122,50 @@ if (buscador) {
 
  const FAVS_KEY = 'st-galeria-favoritos';
             const cards = document.querySelectorAll('.galeria-card');
+            const allCards = cards;
             const filtros = document.querySelectorAll('.filtro-tag');
             const countEl = document.querySelector('.galeria-count');
             const sinResultados2 = document.querySelector('.sin-resultados');
 
-            cards.forEach(card => {
-              if (card.dataset.imageUrl) {
-                card.style.backgroundImage = `url("${card.dataset.imageUrl}")`;
+            const posterSection = document.querySelector('.temporada-posters');
+            if (posterSection && document.querySelector('#galeria-grid')) {
+              const posterRows = Array.prototype.slice.call(posterSection.querySelectorAll('.row'));
+              const posterCards = Array.prototype.slice.call(posterSection.querySelectorAll('.poster'));
+              const posterOrderKey = 'st-galeria-poster-order-v1';
+              const getPosterKey = card => `${card.dataset.season}|${card.querySelector('img')?.src || ''}`;
+              const originalKeys = posterCards.map(getPosterKey);
+              let savedKeys = [];
+
+              try {
+                savedKeys = JSON.parse(localStorage.getItem(posterOrderKey) || '[]');
+              } catch (error) {
+                savedKeys = [];
               }
-            });
+
+              const savedOrderIsValid = savedKeys.length === originalKeys.length &&
+                originalKeys.every(key => savedKeys.includes(key));
+
+              if (!savedOrderIsValid) {
+                savedKeys = originalKeys.slice();
+                for (let i = savedKeys.length - 1; i > 0; i--) {
+                  const randomIndex = Math.floor(Math.random() * (i + 1));
+                  const temporary = savedKeys[i];
+                  savedKeys[i] = savedKeys[randomIndex];
+                  savedKeys[randomIndex] = temporary;
+                }
+                try {
+                  localStorage.setItem(posterOrderKey, JSON.stringify(savedKeys));
+                } catch (error) {
+                }
+              }
+
+              posterCards.sort((first, second) => savedKeys.indexOf(getPosterKey(first)) - savedKeys.indexOf(getPosterKey(second)));
+              const posterGrid = posterRows[0];
+              if (posterGrid) {
+                posterCards.forEach(card => posterGrid.appendChild(card));
+                posterRows.slice(1).forEach(row => row.remove());
+              }
+            }
 
             function getFavoritos() {
                 return JSON.parse(localStorage.getItem(FAVS_KEY) || '[]');
@@ -142,7 +177,7 @@ if (buscador) {
 
             function pintarFavoritos() {
                 const favs = getFavoritos();
-                cards.forEach(card => {
+                allCards.forEach(card => {
                     const btn = card.querySelector('.card-fav');
                     btn.classList.toggle('is-fav', favs.includes(card.dataset.id));
                 });
@@ -544,50 +579,126 @@ try {
     questions.forEach(function(q){ observer.observe(q); });
   }
  
+  var ultimaFirmaQuiz = null;
+  var ultimaClaveQuiz = null;
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    var checked = form.querySelectorAll('input[type="radio"]:checked');
-    var conteo = {};
-    for (var i = 0; i < checked.length; i++){
-      var v = checked[i].value;
-      conteo[v] = (conteo[v] || 0) + 1;
-    }
-    var mejor = null, mejorCant = -1;
-    for (var key in conteo){
-      if (conteo[key] > mejorCant) { mejor = key; mejorCant = conteo[key]; }
-    }
- 
-    var nombres = {
-      lider: 'Una persona líder, decidida a tomar acción cuando el grupo más lo necesita.',
-      protector: 'Alguien protector, que siempre piensa primero en cuidar a los demás.',
-      curioso: 'Un espíritu curioso, atraído por lo desconocido y las respuestas difíciles.',
-      leal: 'Un compañero leal, el que nunca abandona al grupo pase lo que pase.'
-    };
+    var respuestasActuales = Array.prototype.slice.call(
+      form.querySelectorAll('input[type="radio"]:checked')
+    ).map(function(input){ return input.name + '=' + input.value; }).join('|');
  
     var personajes = {
-      lider: {
-        nombre: 'Mike Wheeler',
-        imagen: 'https://i.pinimg.com/1200x/7a/54/80/7a5480c2c534586667418a378ae63da4.jpg',
-        descripcion: nombres.lider
+      hopper: {
+        nombre: 'Jim Hopper',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings/images/6/68/Jim_Hopper_Season_2.png/revision/latest?cb=20190427154920&path-prefix=es',
+        descripcion: 'Un protector decidido, dispuesto a investigar cualquier misterio para cuidar a su familia y a Hawkins.'
       },
-      protector: {
+      eleven: {
         nombre: 'Eleven',
         imagen: 'https://i.pinimg.com/736x/81/ee/d7/81eed76772fcf3b9524fffb8b2dc37e9.jpg',
-        descripcion: nombres.protector
+        descripcion: 'Una persona poderosa y sensible que enfrenta cualquier amenaza para proteger a quienes quiere.'
       },
-      curioso: {
+      dustin: {
         nombre: 'Dustin Henderson',
         imagen: 'https://i.pinimg.com/736x/47/f8/b6/47f8b6cbaf3d49412a03f64fd2cf5cc8.jpg',
-        descripcion: nombres.curioso
+        descripcion: 'Un estratega ingenioso y curioso que siempre busca una explicación para lo imposible.'
       },
-      leal: {
+      steve: {
+        nombre: 'Steve Harrington',
+        imagen: 'https://thumb.wikimedia.org/wikipedia/en/thumb/8/8b/ST3_Steve_Harrington_portrait.jpg/250px-ST3_Steve_Harrington_portrait.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',
+        descripcion: 'Un aliado valiente y protector que termina poniéndose al frente cuando sus amigos lo necesitan.'
+      },
+      joyce: {
+        nombre: 'Joyce Byers',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings/images/f/f3/Joyces5.webp/revision/latest?cb=20251129030252&path-prefix=es',
+        descripcion: 'Una madre intuitiva y perseverante que nunca deja de luchar por su familia.'
+      },
+      will: {
         nombre: 'Will Byers',
         imagen: 'https://i.pinimg.com/1200x/f0/99/60/f0996059f55756e352d476456e41ac30.jpg',
-        descripcion: nombres.leal
+        descripcion: 'Una persona sensible y leal, con una conexión profunda con sus amigos y con lo desconocido.'
+      },
+      nancy: {
+        nombre: 'Nancy Wheeler',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings/images/7/73/Nancy_Wheeler.png/revision/latest/scale-to-width/360?cb=20160831170859&path-prefix=es',
+        descripcion: 'Una investigadora decidida que busca pruebas y enfrenta la verdad sin rendirse.'
+      },
+      jonathan: {
+        nombre: 'Jonathan Byers',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings8338/images/f/f1/Jonathan_Byers.jpg/revision/latest/scale-to-width/360?cb=20200915034529',
+        descripcion: 'Una persona observadora y protectora, siempre pendiente de su familia y de quienes ama.'
+      },
+      mike: {
+        nombre: 'Mike Wheeler',
+        imagen: 'https://i.pinimg.com/1200x/7a/54/80/7a5480c2c534586667418a378ae63da4.jpg',
+        descripcion: 'Un líder leal que mantiene unido al grupo y confía profundamente en sus amigos.'
+      },
+      robin: {
+        nombre: 'Robin Buckley',
+        imagen: 'https://media.vogue.es/photos/5d261c302a7c500008a1f6f2/2:3/w_2560%2Cc_limit/RD24_promo_stills_022519.0050.jpg',
+        descripcion: 'Una persona brillante y observadora, capaz de encontrar conexiones que otros pasan por alto.'
+      },
+      lucas: {
+        nombre: 'Lucas Sinclair',
+        imagen: 'https://static.wikia.nocookie.net/personajes-random/images/a/a6/Lucas.png/revision/latest?cb=20200917164504&path-prefix=es',
+        descripcion: 'Un amigo práctico y valiente que piensa con claridad incluso en los momentos más difíciles.'
+      },
+      erica: {
+        nombre: 'Erica Sinclair',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings/images/2/24/Erica_Season_3.png/revision/latest?cb=20190711205512&path-prefix=es',
+        descripcion: 'Una persona ingeniosa, directa y segura de sí misma, capaz de resolver cualquier desafío.'
+      },
+      vecna: {
+        nombre: 'Vecna',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings8338/images/8/8b/Vecna_S4.jpg/revision/latest/scale-to-width/360?cb=20230819085138',
+        descripcion: 'Una presencia calculadora y poderosa que convierte los miedos en su principal arma.'
+      },
+      billy: {
+        nombre: 'Billy Hargrove',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings/images/9/95/Billy.png/revision/latest/scale-to-width/360?cb=20171028233931&path-prefix=es',
+        descripcion: 'Una personalidad intensa y desafiante que enfrenta cada situación con orgullo y determinación.'
+      },
+      eddie: {
+        nombre: 'Eddie Munson',
+        imagen: 'https://hips.hearstapps.com/hmg-prod/images/joseph-quinn-as-eddie-munson-stranger-things-season-4-2-1653998700.jpg?crop=0.491xw:0.739xh;0.242xw,0.0185xh&resize=1200:*',
+        descripcion: 'Un espíritu creativo y rebelde que protege a su grupo siendo fiel a sí mismo.'
+      },
+      brenner: {
+        nombre: 'Dr. Brenner',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings8338/images/b/be/Brenner_S1.png/revision/latest?cb=20221115135716',
+        descripcion: 'Una mente fría y calculadora que busca controlar aquello que todavía no comprende.'
+      },
+      max: {
+        nombre: 'Max Mayfield',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings8338/images/2/2a/1989.png/revision/latest?cb=20260313154711',
+        descripcion: 'Una persona independiente y fuerte que necesita libertad, pero también valora profundamente a su grupo.'
+      },
+      bob: {
+        nombre: 'Bob Newby',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings8338/images/d/d0/Bob_Newby_S2.png/revision/latest/thumbnail/width/360/height/360?cb=20180327083407',
+        descripcion: 'Un aliado amable y resolutivo que siempre intenta encontrar una solución para ayudar.'
+      },
+      murray: {
+        nombre: 'Murray Bauman',
+        imagen: 'https://static.wikia.nocookie.net/strangerthings8338/images/d/de/Murray_Bauman.png/revision/latest?cb=20171118142040',
+        descripcion: 'Un investigador honesto y desconfiado que sigue las pistas hasta las teorías más extrañas.'
+      },
+      holly: {
+        nombre: 'Holly Wheeler',
+        imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOU_H7grX8g0QIUdJ82DXFYwhHGbc41EN1jSccM5D57g&s=10',
+        descripcion: 'Una persona sensible y curiosa que encuentra seguridad en su familia y en quienes la acompañan.'
       }
     };
 
-    var personaje = personajes[mejor];
+    if (respuestasActuales !== ultimaFirmaQuiz || !ultimaClaveQuiz) {
+      var claves = Object.keys(personajes);
+      ultimaClaveQuiz = claves[Math.floor(Math.random() * claves.length)];
+      ultimaFirmaQuiz = respuestasActuales;
+    }
+
+    var claveAleatoria = ultimaClaveQuiz;
+    var personaje = personajes[claveAleatoria];
     if (!personaje || !resultModal) return;
 
     resultName.textContent = personaje.nombre;

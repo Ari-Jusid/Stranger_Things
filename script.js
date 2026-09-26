@@ -181,9 +181,11 @@ if (buscador) {
               function actualizarLightbox() {
                 const card = lightboxCards[lightboxIndex];
                 if (!card) return;
-                lightboxImage.style.backgroundImage = card.dataset.imageUrl
-                    ? `url("${card.dataset.imageUrl}")`
-                    : getComputedStyle(card).backgroundImage;
+                const image = card.querySelector('img');
+                const imageUrl = card.dataset.imageUrl || image?.src;
+                lightboxImage.style.backgroundImage = imageUrl
+                  ? `url("${imageUrl}")`
+                  : getComputedStyle(card).backgroundImage;
                 lightboxImage.setAttribute('aria-label', card.querySelector('h3')?.textContent || 'Imagen de la galería');
                 lightboxPrev.disabled = lightboxCards.length < 2;
                 lightboxNext.disabled = lightboxCards.length < 2;

@@ -989,9 +989,29 @@ a {
   aspect-ratio: 3 / 2;
   border-radius: 12px;
   overflow: hidden;
-  background-image: url("https://img.magnific.com/foto-gratis/cascada-naturaleza-tailandia_335224-989.jpg?semt=ais_hybrid&w=740&q=80");
-  background-size: cover;
-  background-position: center;
+  background: #1a0f0f;
+}
+
+.galeria-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: filter .25s ease;
+}
+
+.galeria-card.poster {
+  background: #090606;
+}
+
+.galeria-card.poster > img {
+  object-fit: fill;
+}
+
+.galeria-card.poster figcaption {
+  display: none;
 }
 
 /* viñeta pareja arriba y abajo, para que el botón, el tag
@@ -1002,6 +1022,11 @@ a {
   inset: 0;
   background: linear-gradient(180deg, rgba(15, 2, 2, 0.397) 0%, transparent 28%, transparent 65%, rgba(15, 2, 2, 0.589) 100%);
   pointer-events: none;
+  z-index: 1;
+}
+
+.galeria-card:hover > img {
+  filter: brightness(.72);
 }
 
 .card-fav {
@@ -1362,8 +1387,10 @@ body.lightbox-open {
 /* Imagen */
 
 .episodio-img {
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
+  object-fit: cover;
 
   border-radius: 8px;
 

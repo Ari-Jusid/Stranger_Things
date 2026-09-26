@@ -710,48 +710,16 @@ a {
 
 
 .personajes-grid .perImg {
+  display: block;
   width: 250px;
   height: 400px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   border-radius: 8px;
   filter: brightness(1);
   transition:
     transform 0.25s ease,
     filter 0.25s ease;
-}
-
-.personajes-grid .protagonistaCard:nth-child(1) .perImg {
-  background-image: url(https://i.pinimg.com/736x/81/ee/d7/81eed76772fcf3b9524fffb8b2dc37e9.jpg);
-}
-
-.personajes-grid .protagonistaCard:nth-child(2) .perImg {
-  background-image: url(https://i.pinimg.com/1200x/7a/54/80/7a5480c2c534586667418a378ae63da4.jpg);
-}
-
-.personajes-grid .protagonistaCard:nth-child(3) .perImg {
-  background-image: url(https://i.pinimg.com/1200x/f0/99/60/f0996059f55756e352d476456e41ac30.jpg);
-}
-
-.personajes-grid .protagonistaCard:nth-child(4) .perImg {
-  background-image: url(https://i.pinimg.com/736x/47/f8/b6/47f8b6cbaf3d49412a03f64fd2cf5cc8.jpg);
-}
-
-
-.personajes-grid .perCard:nth-child(1) .perImg {
-  background-image: url(https://i.pinimg.com/736x/81/ee/d7/81eed76772fcf3b9524fffb8b2dc37e9.jpg);
-}
-
-.personajes-grid .perCard:nth-child(2) .perImg {
-  background-image: url(https://i.pinimg.com/1200x/7a/54/80/7a5480c2c534586667418a378ae63da4.jpg);
-}
-
-.personajes-grid .perCard:nth-child(3) .perImg {
-  background-image: url(https://i.pinimg.com/1200x/f0/99/60/f0996059f55756e352d476456e41ac30.jpg);
-}
-
-.personajes-grid .perCard:nth-child(4) .perImg {
-  background-image: url(https://i.pinimg.com/736x/47/f8/b6/47f8b6cbaf3d49412a03f64fd2cf5cc8.jpg);
 }
 
 .personajes-grid p {

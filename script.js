@@ -66,10 +66,24 @@ const sinResultados = document.querySelector(".sin-resultados");
 
 if (buscador) {
 
+  if (sinResultados) {
+    sinResultados.style.display = "none";
+  }
+
     buscador.addEventListener("input", function () {
 
         const texto = this.value.toLowerCase().trim();
         let encontrados = 0;
+
+        if (texto === "") {
+          personajes.forEach(function (personaje) {
+            personaje.style.display = "";
+          });
+          if (sinResultados) {
+            sinResultados.style.display = "none";
+          }
+          return;
+        }
 
         personajes.forEach(function (personaje) {
 
@@ -150,7 +164,7 @@ if (buscador) {
                 if (countEl) {
                   countEl.textContent = `${visibles} imagen${visibles === 1 ? '' : 'es'}`;
                 }
-                if (sinResultados2) {
+                if (sinResultados2 && cards.length > 0) {
                   sinResultados2.style.display = visibles === 0 ? 'block' : 'none';
                 }
             }

@@ -120,7 +120,7 @@ if (buscador) {
 }
 
 
- const FAVS_KEY = 'st-galeria-favoritos';
+ const FAVS_KEY = 'st-galeria-favoritos-v2';
             const cards = document.querySelectorAll('.galeria-card');
             const allCards = cards;
             const filtros = document.querySelectorAll('.filtro-tag');
@@ -175,11 +175,18 @@ if (buscador) {
                 localStorage.setItem(FAVS_KEY, JSON.stringify(favs));
             }
 
+            function getCardKey(card) {
+              const image = card.querySelector('img');
+              return `${card.dataset.season}|${card.dataset.imageUrl || image?.src || card.dataset.id}`;
+            }
+
             function pintarFavoritos() {
                 const favs = getFavoritos();
                 allCards.forEach(card => {
                     const btn = card.querySelector('.card-fav');
-                    btn.classList.toggle('is-fav', favs.includes(card.dataset.id));
+                    if (btn) {
+                  btn.classList.toggle('is-fav', favs.includes(getCardKey(card)));
+                    }
                 });
             }
 
@@ -189,7 +196,7 @@ if (buscador) {
                 cards.forEach(card => {
                     let mostrar = true;
                     if (filtro === 'favoritos') {
-                        mostrar = favs.includes(card.dataset.id);
+                      mostrar = favs.includes(getCardKey(card));
                     } else if (filtro !== 'todas') {
                         mostrar = card.dataset.season === filtro;
                     }
@@ -208,7 +215,7 @@ if (buscador) {
               btn.addEventListener('click', (event) => {
                 event.stopPropagation();
                     const card = btn.closest('.galeria-card');
-                    const id = card.dataset.id;
+                    const id = getCardKey(card);
                     let favs = getFavoritos();
                     favs = favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id];
                     guardarFavoritos(favs);

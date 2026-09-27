@@ -1000,10 +1000,6 @@ a {
   display: none;
 }
 
-.temporada-posters .card-fav {
-  display: none;
-}
-
 /* viñeta pareja arriba y abajo, para que el botón, el tag
    y el caption siempre se lean bien sobre cualquier foto */
 .galeria-card:hover::before{

@@ -9,7 +9,8 @@ $resultado = mysqli_query($conexion, $consulta);
 
 if (mysqli_num_rows($resultado) == 1) {
     $usuario = mysqli_fetch_assoc($resultado);
-
+    echo "Usuario encontrado: " . $usuario['nombre'] . "<br>";
+    echo "Contraseña ingresada: " . $contrasena. "<br>";
     if (password_verify($contrasena, $usuario['contraseña'])) {
         echo "✅ Bienvenido, " . $usuario['nombre'] . "!";
     } else {

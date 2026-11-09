@@ -2330,3 +2330,389 @@ body.quiz-modal-open {
   }
 }
  
+
+
+/* =================================
+   TRAVELWORLD - LOGIN
+================================= */
+
+
+
+
+/* CONTENEDOR */
+
+.tw-login-container {
+    width: 100%;
+    min-height: 620px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    overflow: hidden;
+
+    animation: tw-appear 1s ease;
+}
+
+
+/* PANEL IZQUIERDO */
+
+.tw-login-section {
+    padding: 45px 12%;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--bg);
+}
+
+
+/* HEADER */
+
+.tw-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tw-logo {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+}
+
+.tw-logo-icon {
+    width: 23px;
+    height: 23px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #3210d8;
+    color: white;
+    border-radius: 50%;
+}
+
+.tw-logo-text {
+    font-weight: 700;
+        color: var(--text);
+
+}
+
+.tw-language {
+    border: none;
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 12px;
+
+    cursor: pointer;
+        color: var(--text);
+
+}
+
+
+/* FORMULARIO */
+
+.tw-form-container {
+    width: 100%;
+    max-width: 370px;
+    margin: auto 0;
+      color: var(--text);
+
+    animation: tw-slide-up 1s ease .2s both;
+}
+
+.tw-form-title {
+    margin-bottom: 25px;
+}
+
+.tw-title {
+    font-size: clamp(30px, 3vw, 43px);
+    line-height: 1.2;
+    font-weight: 700;
+
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.tw-subtitle {
+    font-size: 11px;
+        color: var(--text);
+    
+}
+
+.tw-link {
+    color: var(--red);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.tw-link:hover {
+    text-decoration: underline;
+}
+
+
+/* INPUTS */
+
+.tw-input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.tw-label {
+    font-size: 11px;
+    font-weight: 500;
+
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.tw-input {
+    width: 100%;
+    height: 38px;
+
+    border: 1px solid transparent;
+    outline: none;
+
+    background: #f0f0f0;
+    padding: 0 12px;
+
+    font-family: inherit;
+    font-size: 11px;
+
+    transition: .3s;
+}
+
+.tw-input:focus {
+    border-color: var(--red);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(50, 16, 216, .08);
+}
+
+
+/* BOTÓN */
+
+.tw-login-button {
+    width: 100%;
+    height: 38px;
+
+    border: none;
+    background: var(--red);
+    color: white;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.tw-login-button:hover {
+    background:rgb(214, 1, 1);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 18px rgba(50, 16, 216, .25);
+}
+
+.tw-login-button:active {
+    transform: scale(.98);
+}
+
+
+/* RECUPERAR CONTRASEÑA */
+
+.tw-forgot-link {
+    display: inline-block;
+    margin-top: 13px;
+
+    font-size: 10px;
+    color: var(--red);
+    text-decoration: none;
+}
+
+.tw-forgot-link:hover {
+    text-decoration: underline;
+}
+
+
+/* PANEL DERECHO */
+
+.tw-image-section {
+    position: relative;
+    overflow: hidden;
+
+    min-height: 620px;
+
+    background-image: url('https://i.pinimg.com/564x/f7/30/41/f73041c9dbbb270932d2a8b83a6d4c94.jpg');
+    background-size: cover;
+    background-position: center;
+
+    animation: tw-image-appear 1.3s ease;
+}
+
+.tw-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, .02) 40%,
+        rgba(0, 0, 0, .55) 100%
+    );
+
+    pointer-events: none;
+}
+
+
+
+
+/* TEXTO DE LA IMAGEN */
+
+.tw-image-content {
+    position: absolute;
+    bottom: 35px;
+    left: 12%;
+
+    color: white;
+
+    animation: tw-slide-up 1.2s ease .5s both;
+}
+
+.tw-image-title {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.tw-image-description {
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 3px;
+}
+
+
+/* INDICADORES */
+
+.tw-slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+.tw-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .5);
+}
+
+.tw-dot-active {
+    background: white;
+    transform: scale(1.2);
+}
+
+
+/* ANIMACIONES */
+
+@keyframes tw-appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tw-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tw-image-appear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes tw-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .tw-login-page {
+        padding: 20px;
+    }
+
+    .tw-login-container {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+    }
+
+    .tw-login-section {
+        min-height: 550px;
+        padding: 35px 10%;
+    }
+
+    .tw-image-section {
+        min-height: 300px;
+    }
+
+    .tw-image-content {
+        left: 8%;
+        bottom: 25px;
+    }
+
+    .tw-image-title {
+        font-size: 20px;
+    }
+}
+
+
+/* ACCESIBILIDAD */
+
+@media (prefers-reduced-motion: reduce) {
+    .tw-login-container,
+    .tw-form-container,
+    .tw-image-section,
+    .tw-image-content,
+    .tw-decoration {
+        animation: none !important;
+    }
+
+    .tw-login-button,
+    .tw-input {
+        transition: none !important;
+    }
+}

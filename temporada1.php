@@ -1,3 +1,10 @@
+<?php
+  include("connect.php");
+  $resultado = mysqli_query($conexion, "SELECT * FROM episodios WHERE id_temporada = 1");
+if (!$resultado) {
+    die("Error en la consulta: " . mysqli_error($conexion));
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -96,172 +103,34 @@
           <span>Temporada 1</span>
           <h2>Episodios</h2>
         </div>
-
-
         <div class="episodios-grid">
 
-          <!-- EPISODIO 1 -->
-          <article class="episodio-card">
+        <?php
+        while($fila = mysqli_fetch_assoc($resultado)){ 
 
-            <img class="episodio-img episodio-1" src="https://static.wikia.nocookie.net/strangerthings/images/5/5e/The_vanishing_of_will_byers.jpg/revision/latest?cb=20160826025446&path-prefix=es" alt="Imagen del episodio 1 de la temporada 1">
+        ?>
+        <article class="episodio-card">
+
+            <img class="episodio-img episodio-1" src="<?php echo $fila['imageURL']?>" alt="Imagen del episodio 1 de la temporada 1">
 
             <div class="episodio-info">
-              <span class="episodio-numero">01</span>
+              <span class="episodio-numero">0<?php echo $fila['numero']?></span>
 
-              <h3>The Vanishing of Will Byers</h3>
+              <h3><?php echo $fila['nombre']?></h3>
 
               <p>
-                Will Byers desaparece misteriosamente de camino a casa.
-                Sus amigos comienzan a buscarlo mientras una extraña niña
-                aparece en el bosque.
+                <?php echo $fila['descripcion']?>
               </p>
             </div>
 
-          </article>
+        </article>
 
-
-          <!-- EPISODIO 2 -->
-          <article class="episodio-card">
-
-            <img class="episodio-img episodio-2" src="https://static.wikia.nocookie.net/strangerthings/images/f/fc/The_weirdo_on_mapple_street.jpg/revision/latest?cb=20160826030827&path-prefix=es" alt="Imagen del episodio 2 de la temporada 1">
-
-            <div class="episodio-info">
-              <span class="episodio-numero">02</span>
-
-              <h3>The Weirdo on Maple Street</h3>
-
-              <p>
-                Mike, Dustin y Lucas esconden a Eleven y descubren que
-                tiene habilidades extraordinarias. Mientras tanto,
-                Joyce comienza a sospechar que Will intenta comunicarse.
-              </p>
-            </div>
-
-          </article>
-
-
-          <!-- EPISODIO 3 -->
-          <article class="episodio-card">
-
-            <img class="episodio-img episodio-3" src="https://static.wikia.nocookie.net/strangerthings/images/9/93/Holly%2C_Jolly.png/revision/latest?cb=20160828183211&path-prefix=es" alt="Imagen del episodio 3 de la temporada 1">
-
-            <div class="episodio-info">
-              <span class="episodio-numero">03</span>
-
-              <h3>Holly, Jolly</h3>
-
-              <p>
-                Joyce encuentra una forma inesperada de comunicarse con
-                Will, mientras Hopper empieza a investigar qué ocurre
-                realmente en Hawkins.
-              </p>
-            </div>
-
-          </article>
-
-
-          <!-- EPISODIO 4 -->
-          <article class="episodio-card">
-
-            <img class="episodio-img episodio-4" src="https://static.wikia.nocookie.net/strangerthings/images/c/cd/The_Body.png/revision/latest?cb=20160828183212&path-prefix=es" alt="Imagen del episodio 4 de la temporada 1">
-
-            <div class="episodio-info">
-              <span class="episodio-numero">04</span>
-
-              <h3>The Body</h3>
-
-              <p>
-                La búsqueda de Will da un giro cuando aparece un cuerpo
-                que parece poner fin al misterio. Sus amigos, sin embargo,
-                se niegan a creer que sea él.
-              </p>
-            </div>
-
-          </article>
-
-
-          <!-- EPISODIO 5 -->
-          <article class="episodio-card">
-
-            <img class="episodio-img episodio-5" src="https://static.wikia.nocookie.net/strangerthings/images/f/f1/The_Flea_and_the_Acrobat_-_the_Monster_feeds.png/revision/latest?cb=20170730225514&path-prefix=es" alt="Imagen del episodio 5 de la temporada 1">
-
-            <div class="episodio-info">
-              <span class="episodio-numero">05</span>
-
-              <h3>The Flea and the Acrobat</h3>
-
-              <p>
-                Los chicos utilizan una explicación científica para
-                comprender la existencia de otra dimensión y encontrar
-                una forma de llegar hasta Will.
-              </p>
-            </div>
-
-          </article>
-
-
-          <!-- EPISODIO 6 -->
-          <article class="episodio-card">
-
-            <img class="episodio-img episodio-6" src="https://static.wikia.nocookie.net/strangerthings/images/8/8a/The_Monster.jpg/revision/latest?cb=20160828183213&path-prefix=es" alt="Imagen del episodio 6 de la temporada 1">
-
-            <div class="episodio-info">
-              <span class="episodio-numero">06</span>
-
-              <h3>The Monster</h3>
-
-              <p>
-                Eleven revela parte de su pasado mientras Hopper y Joyce
-                intentan descubrir la verdad detrás del laboratorio y
-                encontrar una entrada al Upside Down.
-              </p>
-            </div>
-
-          </article>
-
-
-          <!-- EPISODIO 7 -->
-          <article class="episodio-card">
-
-            <img class="episodio-img episodio-7" src="https://static.wikia.nocookie.net/strangerthings/images/8/81/The_Bathtub_-_Joyce_and_Eleven.png/revision/latest/scale-to-width-down/1000?cb=20220223165650&path-prefix=es" alt="Imagen del episodio 7 de la temporada 1">
-
-            <div class="episodio-info">
-              <span class="episodio-numero">07</span>
-
-              <h3>The Bathtub</h3>
-
-              <p>
-                El grupo intenta utilizar los poderes de Eleven para
-                localizar a Will. Mientras tanto, Nancy y Jonathan se
-                preparan para enfrentarse a la criatura.
-              </p>
-            </div>
-
-          </article>
-
-
-          <!-- EPISODIO 8 -->
-          <article class="episodio-card">
-
-            <img class="episodio-img episodio-8" src="https://static.wikia.nocookie.net/strangerthings/images/6/63/Stranger_things_mundo_el_rev%C3%A9s.png/revision/latest/scale-to-width-down/1000?cb=20161012225046&path-prefix=es" alt="Imagen del episodio 8 de la temporada 1">
-
-            <div class="episodio-info">
-              <span class="episodio-numero">08</span>
-
-              <h3>The Upside Down</h3>
-
-              <p>
-                Joyce y Hopper entran al Upside Down para rescatar a
-                Will, mientras Eleven y los demás enfrentan al monstruo
-                en una batalla decisiva.
-              </p>
-            </div>
-
-          </article>
-
+        <?php 
+        } 
+          ?>
         </div>
 
-      </div>
+       
 
     </section>
 <!-- ===================== VIDEO ===================== -->
@@ -398,3 +267,6 @@
 </body>
 
 </html>
+<?php
+  mysqli_close($conexion);
+?>

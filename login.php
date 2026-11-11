@@ -18,7 +18,6 @@ if (mysqli_num_rows($resultado) == 1) {
     if (password_verify($contrasena, $usuario['contraseña'])) {
          $_SESSION['usuario'] = $usuario['nombre'];
          $_SESSION['logueado'] = true;
-         echo "✅ Bienvenido, " . $_SESSION['usuario'] . "!";
          header('Location: index.php');
         exit();
     } else {

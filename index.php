@@ -79,7 +79,7 @@
 
         <form class="signup-form">
           <input type="email" placeholder="Ingrese su email..." aria-label="Correo electrónico" required>
-          <button type="submit" class="btn btn-primary">Sign up</button>
+          <button type="submit" class="btn btn-primary"><a href="form_signup.php">Sign up</a></button>
         </form>
       </div>
     </section>

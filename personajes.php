@@ -6,8 +6,8 @@
   { header("Location: form_login.php");
 exit;}
 
-  $resultado = mysqli_query($conexion, "SELECT * FROM personajes");
-if (!$resultado) {
+  $selectAll = mysqli_query($conexion, "SELECT * FROM personajes");
+if (!$selectAll) {
     die("Error en la consulta: " . mysqli_error($conexion));
 }
 ?>
@@ -122,29 +122,45 @@ if (!$resultado) {
 
         </div>
       </div>
-      <div class="buscador-personajes">
+      <div class="buscador-personajes" id="buscador">
         <h6 class="fs-5">Conoce los protagonistas de esta historia</h6>
-        <form class="personajes-search">
-          <input type="text" placeholder="Ingrese el nombre de un personaje..." aria-label="Correo electrónico"
-            required>
-          <button type="button" class="btn btn-primary">Buscar</button>
+        <form class="personajes-search" method="POST" action="buscador.php">
+          <input type="text" name="palabraIngresada" placeholder="Ingrese el nombre de un personaje..."     required>
+          <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
       </div>
       <div class="personajes-grid">
       <div class="row">
-
+      
       <?php
-        while($fila = mysqli_fetch_assoc($resultado)){ 
-        ?>
+      if (isset($_SESSION['busqueda'])) {
+        $resultadoBusqueda = $_SESSION['busqueda'];
+        if (count($resultadoBusqueda) > 0) {
+
+        foreach( $resultadoBusqueda as $fila ){  ?>
         <div class="col-3 mb-2 perCard">
             <img class="perImg" src= <?php echo $fila['imageURL']?>>
             <h6 class="mt-3 fs-5"><?php echo $fila['nombre']?></h6>
             <p><?php echo $fila['descripcion']?></p>
           </div>
 
-    <?php 
-    } 
-      ?>
+    <?php  }  
+      } else {
+        echo "<p style='color: red; font-size: 0.75rem; width: 100%; text-align: center;'>No se encontraron personajes.</p>";
+      }
+      unset($_SESSION['busqueda']);
+
+      } else {
+           
+      while($fila = mysqli_fetch_assoc($selectAll)){  ?>
+        <div class="col-3 mb-2 perCard">
+            <img class="perImg" src= <?php echo $fila['imageURL']?>>
+            <h6 class="mt-3 fs-5"><?php echo $fila['nombre']?></h6>
+            <p><?php echo $fila['descripcion']?></p>
+          </div>
+
+    <?php  }  }?>
+        
              
   </div>
   </div>
@@ -210,7 +226,6 @@ if (!$resultado) {
       </div>
     </footer>
   </main>
-  <script src="script.js"></script>
 </body>
 
 </html>

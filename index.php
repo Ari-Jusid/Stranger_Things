@@ -1,4 +1,12 @@
-<meta charset="UTF-8">
+ <?php
+  include("connect.php");
+  session_start();
+  ?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stranger Things</title>
   <link rel="icon" type="image" href="img/minilogoST.png">
@@ -6,6 +14,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=mail" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,9 +25,9 @@
 
   <!-- ===================== HEADER ===================== -->
   <header class="site-header">
-    <div class="container header-inner-landing">
+    <div class=" header-inner-landing">
       <nav class="main-nav">
-        <a href="index.html">
+        <a href="index.php">
           <img src="img/minilogoST.png" alt="" class="miniLogo">
         </a>
 
@@ -29,20 +41,27 @@
           <div class="dropdown-menu">
             <a href="temporada1.php">Temporada 1</a>
             <a href="temporada2.php">Temporada 2</a>
-            <a href="temporada3.html">Temporada 3</a>
-            <a href="temporada4.html">Temporada 4</a>
-            <a href="temporada5.html">Temporada 5</a>
+            <a href="temporada3.php">Temporada 3</a>
+            <a href="temporada4.php">Temporada 4</a>
+            <a href="temporada5.php">Temporada 5</a>
           </div>
         </div>
 
-        <a href="galeria.html">Galería</a>
-        <a href="quiz.html">Quiz</a>
+        <a href="galeria.php">Galería</a>
+        <a href="quiz.php">Quiz</a>
       </nav>
-
-      <div class="auth-buttons">
+      <?php
+  if (!isset($_SESSION['usuario'])){ ?>
+    <div class="auth-buttons">
         <button class="btn btn-ghost"><a href="form_login.php">Log in</a></button>
         <button class="btn btn-ghost"><a href="form_signup.php">Sign up</a></button>
       </div>
+<?php }else{ ?>
+  <div class="auth-buttons">
+        <button class="btn btn-ghost"><a href="logout.php">Log out</a></button>
+      </div>
+<?php } ?>
+      
     </div>
   </header>
 

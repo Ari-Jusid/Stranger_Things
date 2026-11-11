@@ -1,3 +1,12 @@
+<?php
+  include("connect.php");
+  session_start();
+
+  if (!isset($_SESSION['usuario']))
+  { header("Location: form_login.php");
+exit;}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,41 +29,38 @@
 
   <!-- ===================== HEADER ===================== -->
     <header class="site-header">
-        <div class="cont header-inner">
-            <nav class="main-nav pt-4">
-        <div style="display: flex; align-items: center; justify-content: space-between; width: 30%;">
-          <a href="index.html">
-            <img src="img/minilogoST.png" alt="" class="miniLogo">
+    <div class=" header-inner-landing">
+      <nav class="main-nav">
+        <a href="index.php">
+          <img src="img/minilogoST.png" alt="" class="miniLogo">
+        </a>
+
+        <a href="personajes.php">Personajes</a>
+
+        <div class="nav-dropdown">
+          <a href="temporada1.php" class="has-caret">
+            Temporadas <span class="caret">▾</span>
           </a>
 
-          <a href="personajes.html">Personajes</a>
-
-          <div class="nav-dropdown">
-            <a href="temporada1.html" class="has-caret">
-              Temporadas <span class="caret">▾</span>
-            </a>
-
-            <div class="dropdown-menu">
-              <a href="temporada1.html">Temporada 1</a>
-              <a href="temporada2.html">Temporada 2</a>
-              <a href="temporada3.html">Temporada 3</a>
-              <a href="temporada4.html">Temporada 4</a>
-              <a href="temporada5.html">Temporada 5</a>
-            </div>
+          <div class="dropdown-menu">
+            <a href="temporada1.php">Temporada 1</a>
+            <a href="temporada2.php">Temporada 2</a>
+            <a href="temporada3.php">Temporada 3</a>
+            <a href="temporada4.php">Temporada 4</a>
+            <a href="temporada5.php">Temporada 5</a>
           </div>
-
-          <a href="galeria.html">Galería</a>
-          <a href="quiz.html">Quiz</a>
         </div>
-        <div class="">
-          <a href="contacto.html"><span class="material-symbols-outlined fs-2">
-            mail
-          </span></a></div>
+
+        <a href="galeria.php">Galería</a>
+        <a href="quiz.php">Quiz</a>
       </nav>
 
-
-        </div>
-    </header>
+      <div class="auth-buttons">
+        <button class="btn btn-ghost"><a href="logout.php">Log out</a></button>
+      </div>
+    </div>
+    </div>
+  </header>
 
 
   <main>

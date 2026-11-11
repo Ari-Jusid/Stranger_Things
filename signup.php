@@ -15,7 +15,7 @@ if (mysqli_num_rows($resultado) > 0) {
     $insertar = "INSERT INTO usuarios (nombre, email, contraseña)
                  VALUES ('$nombre', '$correo', '$contrasena')";
     if (mysqli_query($conexion, $insertar)) {
-        header('Location: '.$index.html);
+        header('Location: index.php');
         exit();
 
     } else {
